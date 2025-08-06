@@ -12,6 +12,10 @@
   * TODO:
 * Claude Code
   * TODO:
+  * Configuration
+    * TODO:
+    * Memory management
+  * TODO:
 * MCP
   * TODO:
 * API
