@@ -12,6 +12,16 @@
   * TODO:
 * Claude Code
   * TODO:
+  * Build with Claude Code
+    * TODO:
+    * [Troubleshooting](docs.claude-code.troubleshooting.md)
+  * Deployment
+    * [overview](docs.claude-code.third-party-integrations.md)
+    * TODO:
+  * Administration
+    * [Advanced installation](docs.claude-code.setup.md)
+    * [IAM](docs.claude-code.iam.md)
+    * TODO:
   * Configuration
     * TODO:
     * Memory management
