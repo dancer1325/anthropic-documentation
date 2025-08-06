@@ -55,59 +55,61 @@ https://docs.anthropic.com/en/docs/claude-code/memory
 
 ## How Claude looks up memories
 
-* TODO: Claude Code reads memories recursively: starting in the cwd, Claude Code recurses up to (but not including) the root directory */* and reads any CLAUDE.md or CLAUDE.local.md files it finds. This is especially convenient when working in large repositories where you run Claude Code in *foo/bar/*, and have memories in both *foo/CLAUDE.md* and *foo/bar/CLAUDE.md*.
+* Claude Code reads 
+  * memories ("CLAUDE.md" or "CLAUDE.local.md") 👀recursively👀 
+    * /
+      * start | cwd
+      * recurses up to (WITHOUT including) the root directory */*
+    * pros
+      * | large repositories
+    * ' subtrees, loaded
+      * ❌NOT | launch❌
+      * | Claude reads them 
 
-Claude will also discover CLAUDE.md nested in subtrees under your current working directory. Instead of loading them at launch, they are only included when Claude reads files in those subtrees.
+## Quickly add memories -- via -- `#` 
 
-## Quickly add memories with the `#` shortcut
+* `# someInputToAdd` / 
+  * 👀you are prompted to select the memory | store this in👀
 
-The fastest way to add a memory is to start your input with the `#` character:
+      ```
+      # Always use descriptive variable names
+      ```
 
-```
-# Always use descriptive variable names
-```
+## edit memories -- via -- `/memory`
 
-You'll be prompted to select which memory file to store this in.
-
-## Directly edit memories with `/memory`
-
-Use the `/memory` slash command during a session to open any memory file in your system editor for more extensive additions or organization.
+* [`/memory` slash command](docs.claude-code.slash-commands.md)
+  * allows
+    * 👀| session, open any memory file | your system editor -- to -- edit it👀
 
 ## Set up project memory
 
-Suppose you want to set up a CLAUDE.md file to store important project information, conventions, and frequently used commands.
+* `/init`
+  * 👀bootstrap a CLAUDE.md | your codebase👀
 
-Bootstrap a CLAUDE.md for your codebase with the following command:
-
-```
-> /init 
-```
-
-<Tip>
-  Tips:
-
-  * Include frequently used commands (build, test, lint) to avoid repeated searches
-  * Document code style preferences and naming conventions
-  * Add important architectural patterns specific to your project
-  * CLAUDE.md memories can be used for both instructions shared with your team and for your individual preferences.
-</Tip>
+* recommendations
+  * add 
+    * frequently used commands
+      * Reason:🧠avoid repeated searches🧠
+      * _Example:_ build, test, lint 
+    * document code style preferences & naming conventions
+    * your project's architectural patterns 
 
 ## Organization-level memory management
 
-Enterprise organizations can deploy centrally managed CLAUDE.md files that apply to all users.
-
-To set up organization-level memory management:
-
-1. Create the enterprise memory file in the appropriate location for your operating system:
-
-* macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md`
-* Linux/WSL: `/etc/claude-code/CLAUDE.md`
-* Windows: `C:\ProgramData\ClaudeCode\CLAUDE.md`
-
-2. Deploy via your configuration management system (MDM, Group Policy, Ansible, etc.) to ensure consistent distribution across all developer machines.
+* how to set up memory type's enterprise policy?
+  1. create it -- based on -- your OS
+     * macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md`
+     * Linux/WSL: `/etc/claude-code/CLAUDE.md`
+     * Windows: `C:\ProgramData\ClaudeCode\CLAUDE.md`
+  2. deploy -- via -- your configuration management system (MDM, Group Policy, Ansible, etc.) / distributed | ALL developer machines
 
 ## Memory best practices
 
-* **Be specific**: "Use 2-space indentation" is better than "Format code properly".
-* **Use structure to organize**: Format each individual memory as a bullet point and group related memories under descriptive markdown headings.
-* **Review periodically**: Update memories as your project evolves to ensure Claude is always using the most up to date information and context.
+* **Be specific**
+  * "2-space indentation" vs "Format code properly"
+    * better
+* **Use structure to organize**
+  * format EACH individual memory -- as a -- bullet point 
+  * group related memories | descriptive markdown headings
+* **Review periodically**:
+  * Reason:🧠your project evolves🧠

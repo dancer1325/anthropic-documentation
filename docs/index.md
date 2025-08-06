@@ -15,7 +15,12 @@
   * Configuration
     * TODO:
     * Memory management
-  * TODO:
+  * Reference
+    * TODO:
+    * [Slash commands (`/someCommand`)](docs.claude-code.slash-commands.md)
+    * TODO:
+  * Resources
+    * [Legal and compliance](docs.claude-code.legal-and-compliance.md)
 * MCP
   * TODO:
 * API
