@@ -19,7 +19,7 @@ https://docs.anthropic.com/en/docs/claude-code/slash-commands
 | `/cost`                   | Show token usage statistics                                                    |
 | `/doctor`                 | Checks the health of your Claude Code installation                             |
 | `/help`                   | Get usage help                                                                 |
-| `/init`                   | Initialize project with CLAUDE.md guide                                        |
+| `/init`                   | initialize project -- with -- [CLAUDE.md guide](docs.claude-code.memory.md)                                        |
 | `/login`                  | Switch Anthropic accounts                                                      |
 | `/logout`                 | Sign out from your Anthropic account                                           |
 | `/mcp`                    | Manage MCP server connections and OAuth authentication                         |
