@@ -11,7 +11,9 @@
     * TODO:
   * TODO:
 * Claude Code
-  * TODO:
+  * Getting started
+    * [Overview](claude-code.docs.overview.md)
+    * TODO:
   * Build with Claude Code
     * TODO:
     * [Troubleshooting](docs.claude-code.troubleshooting.md)
