@@ -42,6 +42,9 @@ check [claude_urls.txt](../claude_urls.txt)
   * TODO:
 * API
   * [overview](api.overview.md)
+  * [Client SDKs](api.client-sdks.md)
+  * Beta headers
+  * TODO:
   * TODO:
 * Resources
   * TODO:
