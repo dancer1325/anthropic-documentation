@@ -20,29 +20,6 @@ check
     * Vision
     * TODO:
   * TODO:
-* Claude Code
-  * Getting started
-    * [Overview](claude-code.docs.overview.md)
-    * TODO:
-  * Build with Claude Code
-    * TODO:
-    * [Troubleshooting](docs.claude-code.troubleshooting.md)
-  * Deployment
-    * [overview](docs.claude-code.third-party-integrations.md)
-    * TODO:
-  * Administration
-    * [Advanced installation](docs.claude-code.setup.md)
-    * [IAM](docs.claude-code.iam.md)
-    * TODO:
-  * Configuration
-    * TODO:
-    * Memory management
-  * Reference
-    * TODO:
-    * [Slash commands (`/someCommand`)](docs.claude-code.slash-commands.md)
-    * TODO:
-  * Resources
-    * [Legal and compliance](docs.claude-code.legal-and-compliance.md)
 * MCP
   * TODO:
 * API
@@ -62,17 +39,25 @@ check
 
 # Claude Code
 
-* Getting Started
+* Getting started
+  * [Overview](claude-code.docs.overview.md)
   * TODO:
 * Build with Claude Code
   * TODO:
+  * [Troubleshooting](docs.claude-code.troubleshooting.md)
 * Deployment
+  * [overview](docs.claude-code.third-party-integrations.md)
   * TODO:
 * Administration
+  * [Advanced installation](docs.claude-code.setup.md)
+  * [IAM](docs.claude-code.iam.md)
   * TODO:
 * Configuration
   * TODO:
+  * Memory management
 * Reference
   * TODO:
-* Resources
+  * [Slash commands (`/someCommand`)](docs.claude-code.slash-commands.md)
   * TODO:
+* Resources
+  * [Legal and compliance](docs.claude-code.legal-and-compliance.md)
