@@ -8,17 +8,17 @@ https://code.claude.com/docs/en/network-config.md
     * custom Certificate Authorities (CA),
     * mutual Transport Layer Security (mTLS) authentication
 
-* TODO:
-* Claude Code supports various enterprise network and security configurations through environment variables
-* This includes routing traffic through corporate proxy servers, trusting custom Certificate Authorities (CA), and authenticating with mutual Transport Layer Security (mTLS) certificates for enhanced security.
-
-
-All environment variables shown on this page can also be configured in [`settings.json`](claude.code.settings.md)
-
+* 👀ways to configure environment variables👀
+  * `export ENVIRONMENT_VARIABLE_KEY=ENVIRONMENT_VARIABLE_VALUE`
+    * == traditional one
+  * [settings.json](claude.code.settings.md#settings-files)
+    * ⚠️Claude recommended one⚠️
 
 ## Proxy configuration
 
-### Environment variables
+* == HTTP/HTTPS proxy -- for -- routing traffic
+
+### -- via -- Environment variables
 
 Claude Code respects standard proxy environment variables:
 
@@ -94,5 +94,5 @@ Ensure these URLs are allowlisted in your proxy configuration and firewall rules
 ## Additional resources
 
 * [Claude Code settings](/en/settings)
-* [Environment variables reference](/en/settings#environment-variables)
+* [Environment variables reference](claude.code.settings.md)
 * [Troubleshooting guide](/en/troubleshooting)

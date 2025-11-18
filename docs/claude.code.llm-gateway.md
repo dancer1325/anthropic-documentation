@@ -3,20 +3,25 @@ https://code.claude.com/docs/en/llm-gateway.md
 # LLM gateway configuration
 
 * goal
-  * how to configure Claude Code -- to work with -- LLM gateway solutions
+  * how to configure Claude Code -- to work with -- LLM gateway solutions 
 
 * TODO: Covers gateway requirements, authentication configuration, model selection, and provider-specific endpoint setup.
 
 Deploy centralized model access with usage tracking, budgeting, and audit logging
 
-LLM gateways provide a centralized proxy layer between Claude Code and model providers, 
-often providing:
-
-* **Centralized authentication** - Single point for API key management
-* **Usage tracking** - Monitor usage across teams and projects
-* **Cost controls** - Implement budgets and rate limits
-* **Audit logging** - Track all model interactions for compliance
-* **Model routing** - Switch between providers without code changes
+* LLM gateways
+  * provide
+    * centralized proxy layer BETWEEN Claude Code -- & -- model providers / provide
+      * **Centralized authentication** 
+        * Single point for API key management
+      * **Usage tracking** 
+        * Monitor usage across teams and projects
+      * **Cost controls**
+        * Implement budgets and rate limits
+      * **Audit logging**
+        * Track all model interactions for compliance
+      * **Model routing**
+        * Switch between providers without code changes
 
 ## Gateway requirements
 

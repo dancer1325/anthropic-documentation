@@ -29,15 +29,9 @@ https://docs.anthropic.com/en/docs/claude-code/third-party-integrations
 
 * allow you to
   * combine DIFFERENT providers & infrastructure
-
-
-  * **Corporate proxy**
-* An HTTP/HTTPS proxy for routing traffic (set via `HTTPS_PROXY` or `HTTP_PROXY`)
-  * **LLM Gateway**
-* A service that handles authentication and provides provider-compatible endpoints (set via `ANTHROPIC_BASE_URL`, `ANTHROPIC_BEDROCK_BASE_URL`, or `ANTHROPIC_VERTEX_BASE_URL`)
-
-  Both configurations can be used in tandem.
-</Note>
+    * [**Corporate proxy**](claude.code.network-config.md)
+    * **LLM Gateway**
+      * A service that handles authentication and provides provider-compatible endpoints (set via `ANTHROPIC_BASE_URL`, `ANTHROPIC_BEDROCK_BASE_URL`, or `ANTHROPIC_VERTEX_BASE_URL`)
 
 ### Using Bedrock with corporate proxy
 
