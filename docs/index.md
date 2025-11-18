@@ -49,6 +49,7 @@ check
   * [Troubleshooting](claude.code.troubleshooting.md)
 * Deployment
   * [overview](claude.code.third-party-integrations.md)
+  * [Amazon Bedrock](claude.code.amazon-bedrock.md)
   * TODO:
 * Administration
   * [Advanced installation](claude.code.setup.md)

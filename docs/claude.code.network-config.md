@@ -2,13 +2,19 @@ https://code.claude.com/docs/en/network-config.md
 
 # Enterprise network configuration
 
-> Configure Claude Code for enterprise environments with proxy servers, custom Certificate Authorities (CA), and mutual Transport Layer Security (mTLS) authentication.
+* goal
+  * how to configure Claude Code | enterprise environments / have
+    * proxy servers,
+    * custom Certificate Authorities (CA),
+    * mutual Transport Layer Security (mTLS) authentication
 
-Claude Code supports various enterprise network and security configurations through environment variables. This includes routing traffic through corporate proxy servers, trusting custom Certificate Authorities (CA), and authenticating with mutual Transport Layer Security (mTLS) certificates for enhanced security.
+* TODO:
+* Claude Code supports various enterprise network and security configurations through environment variables
+* This includes routing traffic through corporate proxy servers, trusting custom Certificate Authorities (CA), and authenticating with mutual Transport Layer Security (mTLS) certificates for enhanced security.
 
-<Note>
-  All environment variables shown on this page can also be configured in [`settings.json`](/en/settings).
-</Note>
+
+All environment variables shown on this page can also be configured in [`settings.json`](claude.code.settings.md)
+
 
 ## Proxy configuration
 

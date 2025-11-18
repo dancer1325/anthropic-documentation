@@ -2,93 +2,39 @@ https://docs.anthropic.com/en/docs/claude-code/third-party-integrations
 
 # Enterprise deployment overview
 
-> Learn how Claude Code can integrate with various third-party services and infrastructure to meet enterprise deployment requirements.
+* goal
+  * how Claude Code can integrate -- with -- MULTIPLE 
+    * third-party services
+    * third-party infrastructure
 
-This page provides an overview of available deployment options and helps you choose the right configuration for your organization.
+* deployment option
+  * == 👀how to provide Claude Code -- through -- third party👀
 
 ## Provider comparison
 
-<table>
-  <thead>
-    <tr>
-      <th>Feature</th>
-      <th>Anthropic</th>
-      <th>Amazon Bedrock</th>
-      <th>Google Vertex AI</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>Regions</td>
-      <td>Supported [countries](https://www.anthropic.com/supported-countries)</td>
-      <td>Multiple AWS [regions](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html)</td>
-      <td>Multiple GCP [regions](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations)</td>
-    </tr>
-
-    <tr>
-      <td>Prompt caching</td>
-      <td>Enabled by default</td>
-      <td>Enabled by default</td>
-      <td>Enabled by default</td>
-    </tr>
-
-    <tr>
-      <td>Authentication</td>
-      <td>API key</td>
-      <td>AWS credentials (IAM)</td>
-      <td>GCP credentials (OAuth/Service Account)</td>
-    </tr>
-
-    <tr>
-      <td>Cost tracking</td>
-      <td>Dashboard</td>
-      <td>AWS Cost Explorer</td>
-      <td>GCP Billing</td>
-    </tr>
-
-    <tr>
-      <td>Enterprise features</td>
-      <td>Teams, usage monitoring</td>
-      <td>IAM policies, CloudTrail</td>
-      <td>IAM roles, Cloud Audit Logs</td>
-    </tr>
-  </tbody>
-</table>
-
-## Cloud providers
-
-<CardGroup cols={2}>
-  <Card title="Amazon Bedrock" icon="aws" href="/en/docs/claude-code/amazon-bedrock">
-    Use Claude models through AWS infrastructure with IAM-based authentication and AWS-native monitoring
-  </Card>
-
-  <Card title="Google Vertex AI" icon="google" href="/en/docs/claude-code/google-vertex-ai">
-    Access Claude models via Google Cloud Platform with enterprise-grade security and compliance
-  </Card>
-</CardGroup>
+| Feature             | Anthropic                                                            | Amazon Bedrock                                                                                   | Google Vertex AI                                                                              | Azure AI Foundry                                                                                              |
+|---------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| Regions             | Supported [countries](https://www.anthropic.com/supported-countries) | Multiple AWS [regions](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) | Multiple GCP [regions](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations) | Multiple Azure [regions](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/) |
+| Prompt caching      | Enabled by default                                                   | Enabled by default                                                                               | Enabled by default                                                                            | Enabled by default                                                                                            |
+| Authentication      | API key                                                              | AWS credentials (IAM)                                                                            | GCP credentials (OAuth/Service Account)                                                       | API key or Microsoft Entra ID                                                                                 |
+| Cost tracking       | Dashboard                                                            | AWS Cost Explorer                                                                                | GCP Billing                                                                                   | Azure Cost Management                                                                                         |
+| Enterprise features | Teams, usage monitoring                                              | IAM policies, CloudTrail                                                                         | IAM roles, Cloud Audit Logs                                                                   | RBAC policies, Azure Monitor                                                                                  |
 
 ## Corporate infrastructure
 
-<CardGroup cols={2}>
-  <Card title="Corporate Proxy" icon="shield" href="/en/docs/claude-code/corporate-proxy">
-    Configure Claude Code to work with your organization's proxy servers and SSL/TLS requirements
-  </Card>
-
-  <Card title="LLM Gateway" icon="server" href="/en/docs/claude-code/llm-gateway">
-    Deploy centralized model access with usage tracking, budgeting, and audit logging
-  </Card>
-</CardGroup>
+* [Enterprise Network](claude.code.network-config.md)
+* [LLM Gateway](claude.code.llm-gateway.md)
 
 ## Configuration overview
 
-Claude Code supports flexible configuration options that allow you to combine different providers and infrastructure:
+* allow you to
+  * combine DIFFERENT providers & infrastructure
 
-<Note>
-  Understand the difference between:
 
-  * **Corporate proxy**: An HTTP/HTTPS proxy for routing traffic (set via `HTTPS_PROXY` or `HTTP_PROXY`)
-  * **LLM Gateway**: A service that handles authentication and provides provider-compatible endpoints (set via `ANTHROPIC_BASE_URL`, `ANTHROPIC_BEDROCK_BASE_URL`, or `ANTHROPIC_VERTEX_BASE_URL`)
+  * **Corporate proxy**
+* An HTTP/HTTPS proxy for routing traffic (set via `HTTPS_PROXY` or `HTTP_PROXY`)
+  * **LLM Gateway**
+* A service that handles authentication and provides provider-compatible endpoints (set via `ANTHROPIC_BASE_URL`, `ANTHROPIC_BEDROCK_BASE_URL`, or `ANTHROPIC_VERTEX_BASE_URL`)
 
   Both configurations can be used in tandem.
 </Note>
@@ -148,7 +94,8 @@ export CLAUDE_CODE_SKIP_VERTEX_AUTH=1  # If gateway handles GCP auth
 
 ### Authentication configuration
 
-Claude Code uses the `ANTHROPIC_AUTH_TOKEN` for the `Authorization` header when needed. The `SKIP_AUTH` flags (`CLAUDE_CODE_SKIP_BEDROCK_AUTH`, `CLAUDE_CODE_SKIP_VERTEX_AUTH`) are used in LLM gateway scenarios where the gateway handles provider authentication.
+Claude Code uses the `ANTHROPIC_AUTH_TOKEN` for the `Authorization` header when needed
+* The `SKIP_AUTH` flags (`CLAUDE_CODE_SKIP_BEDROCK_AUTH`, `CLAUDE_CODE_SKIP_VERTEX_AUTH`) are used in LLM gateway scenarios where the gateway handles provider authentication.
 
 ## Choosing the right deployment configuration
 
@@ -183,7 +130,8 @@ Best for organizations that:
 
 When debugging your deployment:
 
-* Use the `claude /status` [slash command](/en/docs/claude-code/slash-commands). This command provides observability into any applied authentication, proxy, and URL settings.
+* Use the `claude /status` [slash command](/en/docs/claude-code/slash-commands)
+* This command provides observability into any applied authentication, proxy, and URL settings.
 * Set environment variable `export ANTHROPIC_LOG=debug` to log requests.
 
 ## Best practices for organizations
