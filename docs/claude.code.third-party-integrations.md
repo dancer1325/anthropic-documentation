@@ -1,4 +1,4 @@
-https://code.claude.com/docs/en/third-party-integrations.md
+https://docs.anthropic.com/en/docs/claude-code/third-party-integrations
 
 # Enterprise deployment overview
 
@@ -14,7 +14,6 @@ This page provides an overview of available deployment options and helps you cho
       <th>Feature</th>
       <th>Anthropic</th>
       <th>Amazon Bedrock</th>
-      <th>Azure AI Foundry</th>
       <th>Google Vertex AI</th>
     </tr>
   </thead>
@@ -24,7 +23,6 @@ This page provides an overview of available deployment options and helps you cho
       <td>Regions</td>
       <td>Supported [countries](https://www.anthropic.com/supported-countries)</td>
       <td>Multiple AWS [regions](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html)</td>
-      <td>Multiple Azure [regions](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/)</td>
       <td>Multiple GCP [regions](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations)</td>
     </tr>
 
@@ -33,22 +31,19 @@ This page provides an overview of available deployment options and helps you cho
       <td>Enabled by default</td>
       <td>Enabled by default</td>
       <td>Enabled by default</td>
-      <td>Enabled by default</td>
     </tr>
 
     <tr>
       <td>Authentication</td>
       <td>API key</td>
-      <td>API key or AWS credentials</td>
-      <td>API key or Microsoft Entra ID</td>
-      <td>GCP credentials</td>
+      <td>AWS credentials (IAM)</td>
+      <td>GCP credentials (OAuth/Service Account)</td>
     </tr>
 
     <tr>
       <td>Cost tracking</td>
       <td>Dashboard</td>
       <td>AWS Cost Explorer</td>
-      <td>Azure Cost Management</td>
       <td>GCP Billing</td>
     </tr>
 
@@ -56,7 +51,6 @@ This page provides an overview of available deployment options and helps you cho
       <td>Enterprise features</td>
       <td>Teams, usage monitoring</td>
       <td>IAM policies, CloudTrail</td>
-      <td>RBAC policies, Azure Monitor</td>
       <td>IAM roles, Cloud Audit Logs</td>
     </tr>
   </tbody>
@@ -64,16 +58,12 @@ This page provides an overview of available deployment options and helps you cho
 
 ## Cloud providers
 
-<CardGroup cols={3}>
-  <Card title="Amazon Bedrock" icon="aws" href="/en/amazon-bedrock">
-    Use Claude models through AWS infrastructure with API key or IAM-based authentication and AWS-native monitoring
+<CardGroup cols={2}>
+  <Card title="Amazon Bedrock" icon="aws" href="/en/docs/claude-code/amazon-bedrock">
+    Use Claude models through AWS infrastructure with IAM-based authentication and AWS-native monitoring
   </Card>
 
-  <Card title="Azure AI Foundry" icon="microsoft" href="/en/azure-ai-foundry">
-    Access Claude through Azure with API key or Microsoft Entra ID authentication and Azure billing
-  </Card>
-
-  <Card title="Google Vertex AI" icon="google" href="/en/google-vertex-ai">
+  <Card title="Google Vertex AI" icon="google" href="/en/docs/claude-code/google-vertex-ai">
     Access Claude models via Google Cloud Platform with enterprise-grade security and compliance
   </Card>
 </CardGroup>
@@ -81,11 +71,11 @@ This page provides an overview of available deployment options and helps you cho
 ## Corporate infrastructure
 
 <CardGroup cols={2}>
-  <Card title="Enterprise Network" icon="shield" href="/en/network-config">
+  <Card title="Corporate Proxy" icon="shield" href="/en/docs/claude-code/corporate-proxy">
     Configure Claude Code to work with your organization's proxy servers and SSL/TLS requirements
   </Card>
 
-  <Card title="LLM Gateway" icon="server" href="/en/llm-gateway">
+  <Card title="LLM Gateway" icon="server" href="/en/docs/claude-code/llm-gateway">
     Deploy centralized model access with usage tracking, budgeting, and audit logging
   </Card>
 </CardGroup>
@@ -107,7 +97,7 @@ Claude Code supports flexible configuration options that allow you to combine di
 
 Route Bedrock traffic through a corporate HTTP/HTTPS proxy:
 
-```bash  theme={null}
+```bash
 # Enable Bedrock
 export CLAUDE_CODE_USE_BEDROCK=1
 export AWS_REGION=us-east-1
@@ -120,7 +110,7 @@ export HTTPS_PROXY='https://proxy.example.com:8080'
 
 Use a gateway service that provides Bedrock-compatible endpoints:
 
-```bash  theme={null}
+```bash
 # Enable Bedrock
 export CLAUDE_CODE_USE_BEDROCK=1
 
@@ -129,38 +119,11 @@ export ANTHROPIC_BEDROCK_BASE_URL='https://your-llm-gateway.com/bedrock'
 export CLAUDE_CODE_SKIP_BEDROCK_AUTH=1  # If gateway handles AWS auth
 ```
 
-### Using Azure AI Foundry with corporate proxy
-
-Route Azure traffic through a corporate HTTP/HTTPS proxy:
-
-```bash  theme={null}
-# Enable Azure AI Foundry
-export CLAUDE_CODE_USE_FOUNDRY=1
-export ANTHROPIC_FOUNDRY_RESOURCE=your-resource
-export ANTHROPIC_FOUNDRY_API_KEY=your-api-key  # Or omit for Entra ID auth
-
-# Configure corporate proxy
-export HTTPS_PROXY='https://proxy.example.com:8080'
-```
-
-### Using Azure AI Foundry with LLM Gateway
-
-Use a gateway service that provides Azure-compatible endpoints:
-
-```bash  theme={null}
-# Enable Azure AI Foundry
-export CLAUDE_CODE_USE_FOUNDRY=1
-
-# Configure LLM gateway
-export ANTHROPIC_FOUNDRY_BASE_URL='https://your-llm-gateway.com'
-export CLAUDE_CODE_SKIP_FOUNDRY_AUTH=1  # If gateway handles Azure auth
-```
-
 ### Using Vertex AI with corporate proxy
 
 Route Vertex AI traffic through a corporate HTTP/HTTPS proxy:
 
-```bash  theme={null}
+```bash
 # Enable Vertex
 export CLAUDE_CODE_USE_VERTEX=1
 export CLOUD_ML_REGION=us-east5
@@ -174,7 +137,7 @@ export HTTPS_PROXY='https://proxy.example.com:8080'
 
 Combine Google Vertex AI models with an LLM gateway for centralized management:
 
-```bash  theme={null}
+```bash
 # Enable Vertex
 export CLAUDE_CODE_USE_VERTEX=1
 
@@ -220,7 +183,7 @@ Best for organizations that:
 
 When debugging your deployment:
 
-* Use the `claude /status` [slash command](/en/slash-commands). This command provides observability into any applied authentication, proxy, and URL settings.
+* Use the `claude /status` [slash command](/en/docs/claude-code/slash-commands). This command provides observability into any applied authentication, proxy, and URL settings.
 * Set environment variable `export ANTHROPIC_LOG=debug` to log requests.
 
 ## Best practices for organizations
@@ -232,7 +195,7 @@ We strongly recommend investing in documentation so that Claude Code understands
 * **Organization-wide**: Deploy to system directories like `/Library/Application Support/ClaudeCode/CLAUDE.md` (macOS) for company-wide standards
 * **Repository-level**: Create `CLAUDE.md` files in repository roots containing project architecture, build commands, and contribution guidelines. Check these into source control so all users benefit
 
-  [Learn more](/en/memory).
+  [Learn more](/en/docs/claude-code/memory).
 
 ### 2. Simplify deployment
 
@@ -244,19 +207,18 @@ Encourage new users to try Claude Code for codebase Q\&A, or on smaller bug fixe
 
 ### 4. Configure security policies
 
-Security teams can configure managed permissions for what Claude Code is and is not allowed to do, which cannot be overwritten by local configuration. [Learn more](/en/security).
+Security teams can configure managed permissions for what Claude Code is and is not allowed to do, which cannot be overwritten by local configuration. [Learn more](/en/docs/claude-code/security).
 
 ### 5. Leverage MCP for integrations
 
-MCP is a great way to give Claude Code more information, such as connecting to ticket management systems or error logs. We recommend that one central team configures MCP servers and checks a `.mcp.json` configuration into the codebase so that all users benefit. [Learn more](/en/mcp).
+MCP is a great way to give Claude Code more information, such as connecting to ticket management systems or error logs. We recommend that one central team configures MCP servers and checks a `.mcp.json` configuration into the codebase so that all users benefit. [Learn more](/en/docs/claude-code/mcp).
 
 At Anthropic, we trust Claude Code to power development across every Anthropic codebase. We hope you enjoy using Claude Code as much as we do!
 
 ## Next steps
 
-* [Set up Amazon Bedrock](/en/amazon-bedrock) for AWS-native deployment
-* [Set up Azure AI Foundry](/en/azure-ai-foundry) for Azure deployment
-* [Configure Google Vertex AI](/en/google-vertex-ai) for GCP deployment
-* [Configure Enterprise Network](/en/network-config) for network requirements
-* [Deploy LLM Gateway](/en/llm-gateway) for enterprise management
-* [Settings](/en/settings) for configuration options and environment variables
+* [Set up Amazon Bedrock](/en/docs/claude-code/amazon-bedrock) for AWS-native deployment
+* [Configure Google Vertex AI](/en/docs/claude-code/google-vertex-ai) for GCP deployment
+* [Implement Corporate Proxy](/en/docs/claude-code/corporate-proxy) for network requirements
+* [Deploy LLM Gateway](/en/docs/claude-code/llm-gateway) for enterprise management
+* [Settings](/en/docs/claude-code/settings) for configuration options and environment variables

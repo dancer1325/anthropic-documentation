@@ -6,13 +6,13 @@ https://code.claude.com/docs/en/overview
   * learn Claude Code
 
 * Claude Code
-  * == Anthropic's agentic coding tool / 
+  * == 💡Anthropic's agentic coding tool💡 / 
     * lives | your terminal
     * helps you turn ideas -- into -- code faster
 
 ## Get started in 30 seconds
 
-* Prerequisites
+* ⚠️Prerequisites⚠️
   * [Claude.ai](https://claude.ai), OR
     * recommended
   * [Claude Console account](https://console.anthropic.com/)
@@ -44,17 +44,34 @@ claude
 # & log in
 ```
 
-## What Claude Code does for you
+## What Claude Code does for you?
 
-* TODO:
-* **Build features from descriptions**: Tell Claude what you want to build in plain English. It will make a plan, write the code, and ensure it works.
-* **Debug and fix issues**: Describe a bug or paste an error message. Claude Code will analyze your codebase, identify the problem, and implement a fix.
-* **Navigate any codebase**: Ask anything about your team's codebase, and get a thoughtful answer back. Claude Code maintains awareness of your entire project structure, can find up-to-date information from the web, and with [MCP](/en/mcp) can pull from external datasources like Google Drive, Figma, and Slack.
-* **Automate tedious tasks**: Fix fiddly lint issues, resolve merge conflicts, and write release notes. Do all this in a single command from your developer machines, or automatically in CI.
+* **Build features from descriptions (plain natural language)**
+* **Debug and fix issues**
+* **Navigate any codebase**
+* **Pull -- from -- external datasources**
+  * -- via -- [MCP](claude.code.mcp.md)
+  * _Examples:_ Google Drive, Figma, and Slack
+* **Automate tedious tasks**
+  * _Examples:_ lint issues, resolve merge conflicts, write release notes, ...
 
 ## Why developers love Claude Code
 
-* **Works in your terminal**: Not another chat window. Not another IDE. Claude Code meets you where you already work, with the tools you already love.
-* **Takes action**: Claude Code can directly edit files, run commands, and create commits. Need more? [MCP](/en/mcp) lets Claude read your design docs in Google Drive, update your tickets in Jira, or use *your* custom developer tooling.
-* **Unix philosophy**: Claude Code is composable and scriptable. `tail -f app.log | claude -p "Slack me if you see any anomalies appear in this log stream"` *works*. Your CI can run `claude -p "If there are new text strings, translate them into French and raise a PR for @lang-fr-team to review"`.
-* **Enterprise-ready**: Use the Claude API, or host on AWS or GCP. Enterprise-grade [security](/en/security), [privacy](/en/data-usage), and [compliance](https://trust.anthropic.com/) is built-in.
+* **Works | your terminal**
+  * == ❌NOT require ANOTHER IDE❌
+* **Takes action**
+  * -- via -- [MCP](claude.code.mcp.md)
+  * _Example:_ edit files, run commands, create commits, ...
+* **Unix philosophy**
+  * == 
+    * composable
+      * == valid in `|` (== pipes)
+      * _Example:_ `tail -f app.log | claude -p "Slack me if you see any anomalies appear in this log stream"`
+    * scriptable
+      * == valid | command line
+      * _Example:_ `claude -p "If there are new text strings, translate them into French and raise a PR for @lang-fr-team to review"`
+* **Enterprise-ready**
+  * Enterprise-grade 
+    * [security](claude.code.security.md),
+    * [privacy](claude.code.data-usage.md),
+    * [compliance](https://trust.anthropic.com/)

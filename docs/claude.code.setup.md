@@ -1,85 +1,71 @@
-https://code.claude.com/docs/en/setup.md
+https://docs.anthropic.com/en/docs/claude-code/setup
 
 # Set up Claude Code
 
-> Install, authenticate, and start using Claude Code on your development machine.
+* goal
+  * | your development machine, about Claude Code,
+    * how to 
+      * install,
+      * authenticate,
+      * use 
 
 ## System requirements
 
 * **Operating Systems**: macOS 10.15+, Ubuntu 20.04+/Debian 10+, or Windows 10+ (with WSL 1, WSL 2, or Git for Windows)
 * **Hardware**: 4GB+ RAM
-* **Software**: [Node.js 18+](https://nodejs.org/en/download) (only required for NPM installation)
-* **Network**: Internet connection required for authentication and AI processing
-* **Shell**: Works best in Bash, Zsh or Fish
+* **Software**: [Node.js 18+](https://nodejs.org/en/download)
+* **Network**: Internet connection
+  * Reason:🧠authenticate & AI processing🧠
+* **Shell**
+  * recommendation
+    * Bash,
+    * Zsh
+    * Fish
 * **Location**: [Anthropic supported countries](https://www.anthropic.com/supported-countries)
-
-### Additional dependencies
-
-* **ripgrep**: Usually included with Claude Code. If search functionality fails, see [search troubleshooting](/en/troubleshooting#search-and-discovery-issues).
 
 ## Standard installation
 
-To install Claude Code, use one of the following methods:
+```sh
+npm install -g @anthropic-ai/claude-code
 
-<Tabs>
-  <Tab title="Native Install (Recommended)">
-    **Homebrew (macOS, Linux):**
-
-    ```sh  theme={null}
-    brew install --cask claude-code
-    ```
-
-    **macOS, Linux, WSL:**
-
-    ```bash  theme={null}
-    curl -fsSL https://claude.ai/install.sh | bash
-    ```
-
-    **Windows PowerShell:**
-
-    ```powershell  theme={null}
-    irm https://claude.ai/install.ps1 | iex
-    ```
-
-    **Windows CMD:**
-
-    ```batch  theme={null}
-    curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
-    ```
-  </Tab>
-
-  <Tab title="NPM">
-    If you have [Node.js 18 or newer installed](https://nodejs.org/en/download/):
-
-    ```sh  theme={null}
-    npm install -g @anthropic-ai/claude-code
-    ```
-  </Tab>
-</Tabs>
-
-<Note>
-  Some users may be automatically migrated to an improved installation method.
-</Note>
-
-After the installation process completes, navigate to your project and start Claude Code:
-
-```bash  theme={null}
-cd your-awesome-project
-claude
+# check your installation type
+claude doctor
 ```
+* recommendations
+  * ❌NOT use `sudo npm install -g`❌
+    * Reason:🧠it can lead to permission issues & security risks🧠
+  * see [troubleshooting](docs.claude-code.troubleshooting.md)
 
-Claude Code offers the following authentication options:
+## how to use | your project?
 
-1. **Claude Console**: The default option. Connect through the Claude Console and complete the OAuth process. Requires active billing at [console.anthropic.com](https://console.anthropic.com). A "Claude Code" workspace will be automatically created for usage tracking and cost management. Note that you cannot create API keys for the Claude Code workspace - it is dedicated exclusively for Claude Code usage.
-2. **Claude App (with Pro or Max plan)**: Subscribe to Claude's [Pro or Max plan](https://claude.com/pricing) for a unified subscription that includes both Claude Code and the web interface. Get more value at the same price point while managing your account in one place. Log in with your Claude.ai account. During launch, choose the option that matches your subscription type.
-3. **Enterprise platforms**: Configure Claude Code to use [Amazon Bedrock, Google Vertex AI, or Azure AI Foundry](/en/third-party-integrations) for enterprise deployments with your existing cloud infrastructure.
+* | your project
 
-<Note>
-  Claude Code securely stores your credentials. See [Credential Management](/en/iam#credential-management) for details.
-</Note>
+    ```bash
+    claude
+    ```
+  * prompt to authenticate
+    * -- via -- 
+      1. **Anthropic Console**
+         1. default option
+         2. connect -- through the -- Anthropic Console & complete the OAuth process
+         3. requirements
+            * | [console.anthropic.com](https://console.anthropic.com), active billing
+      2. **Claude App (with Pro or Max plan)**
+         1. requirements
+            * subscribe | Claude's [Pro or Max plan](https://www.anthropic.com/pricing) / include
+              * Claude Code + web interface
+         2. steps
+            1. log in -- via -- your Claude.ai account
+            2. | launch, choose the option / matches your subscription type
+      3. **Enterprise platforms**
+         1. allows
+            * enterprise deployments -- with -- your existing cloud infrastructure
+         2. configure Claude Code / use [Amazon Bedrock or Google Vertex AI](docs.claude-code.third-party-integrations.md) 
+    * [securely stores your credentials](docs.claude-code.iam.md)
 
-## Windows setup
+## | Windows, how to setup?
 
+* TODO:
 **Option 1: Claude Code within WSL**
 
 * Both WSL 1 and WSL 2 are supported
@@ -88,35 +74,23 @@ Claude Code offers the following authentication options:
 
 * Requires [Git for Windows](https://git-scm.com/downloads/win)
 * For portable Git installations, specify the path to your `bash.exe`:
-  ```powershell  theme={null}
+  ```powershell
   $env:CLAUDE_CODE_GIT_BASH_PATH="C:\Program Files\Git\bin\bash.exe"
   ```
 
-## Alternative installation methods
+## ALTERNATIVE installation methods
 
-Claude Code offers multiple installation methods to suit different environments.
+* if you find issues -> see [troubleshooting guide](docs.claude-code.troubleshooting.md)
 
-If you encounter any issues during installation, consult the [troubleshooting guide](/en/troubleshooting#linux-permission-issues).
+### Native binary installation (Beta)
 
-<Tip>
-  Run `claude doctor` after installation to check your installation type and version.
-</Tip>
+* TODO: If you have an existing installation of Claude Code, use `claude install` to start the native binary installation.
 
-### Native installation options
-
-The native installation is the recommended method and offers several benefits:
-
-* One self-contained executable
-* No Node.js dependency
-* Improved auto-updater stability
-
-If you have an existing installation of Claude Code, use `claude install` to migrate to the native binary installation.
-
-For advanced installation options with the native installer:
+For a fresh install, run the following command:
 
 **macOS, Linux, WSL:**
 
-```bash  theme={null}
+```bash
 # Install stable version (default)
 curl -fsSL https://claude.ai/install.sh | bash
 
@@ -127,17 +101,9 @@ curl -fsSL https://claude.ai/install.sh | bash -s latest
 curl -fsSL https://claude.ai/install.sh | bash -s 1.0.58
 ```
 
-<Note>
-  **Alpine Linux and other musl/uClibc-based distributions**: The native build requires you to install `libgcc`, `libstdc++`, and `ripgrep`. Install (Alpine: `apk add libgcc libstdc++ ripgrep`) and set `USE_BUILTIN_RIPGREP=0`.
-</Note>
-
-<Note>
-  Claude Code installed via Homebrew will auto-update outside of the brew directory unless explicitly disabled with the `DISABLE_AUTOUPDATER` environment variable (see [Auto updates](#auto-updates) section).
-</Note>
-
 **Windows PowerShell:**
 
-```powershell  theme={null}
+```powershell
 # Install stable version (default)
 irm https://claude.ai/install.ps1 | iex
 
@@ -146,58 +112,33 @@ irm https://claude.ai/install.ps1 | iex
 
 # Install specific version number
 & ([scriptblock]::Create((irm https://claude.ai/install.ps1))) 1.0.58
+
 ```
 
-**Windows CMD:**
-
-```batch  theme={null}
-REM Install stable version (default)
-curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
-
-REM Install latest version
-curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd latest && del install.cmd
-
-REM Install specific version number
-curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd 1.0.58 && del install.cmd
-```
+The native Claude Code installer is supported on macOS, Linux, and Windows.
 
 <Tip>
-  Make sure that you remove any outdated aliases or symlinks before installing.
+  Make sure that you remove any outdated aliases or symlinks.
+  Once your installation is complete, run `claude doctor` to verify the installation.
 </Tip>
 
-**Binary integrity and code signing**
+## | Local installation
 
-* SHA256 checksums for all platforms are published in the release manifests, currently located at `https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{VERSION}/manifest.json` (example: replace `{VERSION}` with `2.0.30`)
-* Signed binaries are distributed for the following platforms:
-  * macOS: Signed by "Anthropic PBC" and notarized by Apple
-  * Windows: Signed by "Anthropic, PBC"
+* requirements
+  * ALREADY installed
 
-### NPM installation
+* recommendations
+  * `claude migrate-installer` + select "Claude Code Local Installer"
+    * 👀migrate project memory -- to -- user memory👀
+    * Reason:🧠avoids autoupdater npm permission issues🧠
 
-For environments where NPM is preferred or required:
+## how to run | AWS or GCP?
 
-```sh  theme={null}
-npm install -g @anthropic-ai/claude-code
-```
+* Claude Code
+  * by default, uses Anthropic's API
+  * if you want to run it | AWS or GCP -> see [third-party integrations](docs.claude-code.third-party-integrations.md)
 
-<Warning>
-  Do NOT use `sudo npm install -g` as this can lead to permission issues and security risks.
-  If you encounter permission errors, see [configure Claude Code](/en/troubleshooting#linux-permission-issues) for recommended solutions.
-</Warning>
-
-### Local installation
-
-* After global install via npm, use `claude migrate-installer` to move to local
-* Avoids autoupdater npm permission issues
-* Some users may be automatically migrated to this method
-
-## Running on AWS or GCP
-
-By default, Claude Code uses the Claude API.
-
-For details on running Claude Code on AWS or GCP, see [third-party integrations](/en/third-party-integrations).
-
-## Update Claude Code
+## how to update Claude Code?
 
 ### Auto updates
 
@@ -210,14 +151,16 @@ Claude Code automatically keeps itself up to date to ensure you have the latest 
 
 **Disable auto-updates:**
 
-Set the `DISABLE_AUTOUPDATER` environment variable in your shell or [settings.json file](/en/settings):
+```bash
+# Via configuration
+claude config set autoUpdates false --global
 
-```bash  theme={null}
+# Or via environment variable
 export DISABLE_AUTOUPDATER=1
 ```
 
 ### Update manually
 
-```bash  theme={null}
+```bash
 claude update
 ```
