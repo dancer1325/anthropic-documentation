@@ -1,9 +1,13 @@
 
 ---
-check [claude_urls.txt](../claude_urls.txt)
+check [claude_developer_platform_urls.txt](../claude_developer_platform_urls.txt)
+
 ---
 
 * [overview](home.md)
+
+# Claude Developer Platform
+
 * Developer guide
   * First steps
     * [Intro to Claude](docs.intro.md)
@@ -53,4 +57,21 @@ check [claude_urls.txt](../claude_urls.txt)
     * TODO
   * TODO:
 * Release notes
+  * TODO:
+
+# Claude Code
+
+* Getting Started
+  * TODO:
+* Build with Claude Code
+  * TODO:
+* Deployment
+  * TODO:
+* Administration
+  * TODO:
+* Configuration
+  * TODO:
+* Reference
+  * TODO:
+* Resources
   * TODO:
