@@ -1,7 +1,8 @@
 
 ---
-check [claude_developer_platform_urls.txt](../claude_developer_platform_urls.txt)
-
+check 
+  [claude_developer_platform_urls.txt](../claude_developer_platform_urls.txt)
+  [claude_code_en_docs.txt](../claude_code_en_docs.txt)
 ---
 
 * [overview](home.md)
