@@ -2,27 +2,30 @@ https://code.claude.com/docs/en/amazon-bedrock.md
 
 # Claude Code on Amazon Bedrock
 
-> Learn about configuring Claude Code through Amazon Bedrock, including setup, IAM configuration, and troubleshooting.
+* goal
+  * how to configure Claude Code -- through -- Amazon Bedrock (setup, IAM configuration, and troubleshooting)
 
 ## Prerequisites
 
-Before configuring Claude Code with Bedrock, ensure you have:
-
-* An AWS account with Bedrock access enabled
-* Access to desired Claude models (e.g., Claude Sonnet 4.5) in Bedrock
-* AWS CLI installed and configured (optional - only needed if you don't have another mechanism for getting credentials)
-* Appropriate IAM permissions
+* AWS account / 
+  * has Bedrock access enabled
+* | Bedrock,
+  * access -- to -- desired Claude models 
+* AWS CLI 
+  * installed & configured
+    * ⚠️if it's the ONLY mechanism / get credentials -> MANDATORY⚠️ 
+* IAM permissions
 
 ## Setup
 
 ### 1. Submit use case details
 
-First-time users of Anthropic models are required to submit use case details before invoking a model. This is done once per account.
+* ⚠️First-time users of Anthropic models⚠️
+  * == 1! time / account
 
-1. Ensure you have the right IAM permissions (see more on that below)
-2. Navigate to the [Amazon Bedrock console](https://console.aws.amazon.com/bedrock/)
-3. Select **Chat/Text playground**
-4. Choose any Anthropic model and you will be prompted to fill out the use case form
+1. | [Amazon Bedrock console](https://console.aws.amazon.com/bedrock/)
+   1. Select **Chat/Text playground**
+   2. choose any Anthropic model -> you will be prompted -- to -- fill out the use case form
 
 ### 2. Configure AWS credentials
 

@@ -3,11 +3,7 @@ https://code.claude.com/docs/en/llm-gateway.md
 # LLM gateway configuration
 
 * goal
-  * how to configure Claude Code -- to work with -- LLM gateway solutions 
-
-* TODO: Covers gateway requirements, authentication configuration, model selection, and provider-specific endpoint setup.
-
-Deploy centralized model access with usage tracking, budgeting, and audit logging
+  * how to configure Claude Code -- to work with -- LLM gateway solutions
 
 * LLM gateways
   * provide
@@ -23,9 +19,7 @@ Deploy centralized model access with usage tracking, budgeting, and audit loggin
       * **Model routing**
         * Switch between providers without code changes
 
-## Gateway requirements
-
-For an LLM gateway to work with Claude Code, it must meet the following requirements:
+## LLM Gateway requirements -- to work with -- Claude Code
 
 **API format**
 
@@ -52,15 +46,20 @@ If you have configured custom model names in your gateway, use the environment v
 
 ## LiteLLM configuration
 
-<Note>
-  LiteLLM is a third-party proxy service. Anthropic doesn't endorse, maintain, or audit LiteLLM's security or functionality. This guide is provided for informational purposes and may become outdated. Use at your own discretion.
-</Note>
+* LiteLLM
+  * == third-party proxy service
+  * 's ownership != Anthropic
+  * Reason to mention it here:🧠informational purposes🧠
 
 ### Prerequisites
 
-* Claude Code updated to the latest version
-* LiteLLM Proxy Server deployed and accessible
-* Access to Claude models through your chosen provider
+* Claude Code
+  * latest version
+* LiteLLM Proxy Server 
+  * deployed
+  * accessible
+* Access to 
+  * Claude models -- through -- your chosen provider
 
 ### Basic LiteLLM setup
 
