@@ -30,6 +30,8 @@ check
   * TODO:
 * Resources
   * TODO:
+  * [Glossary](about-claude._glossary.md)
+  * TODO:
   * Prompt Library
     * [Cosmic Keystrokes](resources.prompt-library.cosmic-keystrokes.md)
     * TODO
