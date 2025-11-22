@@ -12,6 +12,8 @@ check
 * Developer guide
   * First steps
     * [Intro to Claude](docs.intro.md)
+    * [Quickstart](docs.get-started.md)
+  * Models
     * TODO:
   * TODO:
   * Capabilities
@@ -23,8 +25,10 @@ check
   * Agent SDK
     * TODO:
   * TODO:
-* MCP
+  * Test & evaluate
+    * TODO:
   * TODO:
+* [MCP](https://github.com/dancer1325/mcp-modelcontextprotocol)
 * API
   * [overview](api.overview.md)
   * [Client SDKs](api.client-sdks.md)

@@ -113,7 +113,7 @@ https://docs.claude.com/en/docs/agents-and-tools/tool-use/token-efficient-tool-u
 https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-fetch-tool
 https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-search-tool
 
-
+✅
 https://docs.claude.com/en/docs/build-with-claude/administration-api
 https://docs.claude.com/en/docs/build-with-claude/batch-processing
 https://docs.claude.com/en/docs/build-with-claude/citations
@@ -152,12 +152,12 @@ https://docs.claude.com/en/docs/build-with-claude/usage-cost-api
 https://docs.claude.com/en/docs/build-with-claude/vision
 https://docs.claude.com/en/docs/build-with-claude/working-with-messages
 
-
+✅
 https://docs.claude.com/en/docs/get-started
 https://docs.claude.com/en/docs/intro
 https://docs.claude.com/en/docs/mcp
 
-
+✅
 https://docs.claude.com/en/docs/test-and-evaluate/define-success
 https://docs.claude.com/en/docs/test-and-evaluate/develop-tests
 https://docs.claude.com/en/docs/test-and-evaluate/eval-tool
@@ -169,7 +169,7 @@ https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-h
 https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-latency
 https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak
 
-
+✅
 https://docs.claude.com/en/home
 
 
