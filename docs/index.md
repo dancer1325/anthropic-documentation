@@ -36,15 +36,15 @@ check
   * TODO:
   * TODO:
 * Resources
-  * TODO:
+  * [Overview](resources.overview.md)
   * [Glossary](about-claude._glossary.md)
+  * [System Prompts](release-notes.system-prompts.md)
   * TODO:
-  * Prompt Library
+  * [Prompt Library](resources.prompt-library.library.md)
     * [Cosmic Keystrokes](resources.prompt-library.cosmic-keystrokes.md)
     * TODO
   * TODO:
-* Release notes
-  * TODO:
+* [Release notes](release-notes.md)
 
 # Claude Code
 
