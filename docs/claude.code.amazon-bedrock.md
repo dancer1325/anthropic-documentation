@@ -1,6 +1,6 @@
 https://code.claude.com/docs/en/amazon-bedrock.md
 
-# Claude Code on Amazon Bedrock
+# Claude Code | Amazon Bedrock
 
 * goal
   * how to configure Claude Code -- through -- Amazon Bedrock (setup, IAM configuration, and troubleshooting)
@@ -29,15 +29,11 @@ https://code.claude.com/docs/en/amazon-bedrock.md
 
 ### 2. Configure AWS credentials
 
-Claude Code uses the default AWS SDK credential chain. Set up your credentials using one of these methods:
+#### 2.1 AWS CLI configuration
 
-**Option A: AWS CLI configuration**
+* `aws configure`
 
-```bash  theme={null}
-aws configure
-```
-
-**Option B: Environment variables (access key)**
+#### 2.2 Environment variables (access key)
 
 ```bash  theme={null}
 export AWS_ACCESS_KEY_ID=your-access-key-id
@@ -45,7 +41,7 @@ export AWS_SECRET_ACCESS_KEY=your-secret-access-key
 export AWS_SESSION_TOKEN=your-session-token
 ```
 
-**Option C: Environment variables (SSO profile)**
+#### 2.3 Environment variables (SSO profile)
 
 ```bash  theme={null}
 aws sso login --profile=<your-profile-name>
@@ -53,19 +49,28 @@ aws sso login --profile=<your-profile-name>
 export AWS_PROFILE=your-profile-name
 ```
 
-**Option D: Bedrock API keys**
+#### 2.4 Bedrock API keys
 
 ```bash  theme={null}
 export AWS_BEARER_TOKEN_BEDROCK=your-bedrock-api-key
 ```
 
-Bedrock API keys provide a simpler authentication method without needing full AWS credentials. [Learn more about Bedrock API keys](https://aws.amazon.com/blogs/machine-learning/accelerate-ai-development-with-amazon-bedrock-api-keys/).
+* benefits
+  * simpler authentication
+    * Reason:🧠NO need FULL AWS credentials🧠
+* [MORE](https://aws.amazon.com/blogs/machine-learning/accelerate-ai-development-with-amazon-bedrock-api-keys/)
 
 #### Advanced credential configuration
 
-Claude Code supports automatic credential refresh for AWS SSO and corporate identity providers. Add these settings to your Claude Code settings file (see [Settings](/en/settings) for file locations).
+* AUTOMATIC credential refresh
+  * ALLOWED |
+    * AWS SSO
+    * corporate identity providers
 
-When Claude Code detects that your AWS credentials are expired (either locally based on their timestamp or when Bedrock returns a credential error), it will automatically run your configured `awsAuthRefresh` and/or `awsCredentialExport` commands to obtain new credentials before retrying the request.
+* add these settings | your [Claude Code settings](claude.code.settings.md)
+
+When Claude Code detects that your AWS credentials are expired (either locally based on their timestamp or when Bedrock returns a credential error), 
+it will automatically run your configured `awsAuthRefresh` and/or `awsCredentialExport` commands to obtain new credentials before retrying the request.
 
 ##### Example configuration
 
