@@ -2,85 +2,111 @@ https://code.claude.com/docs/en/settings.md
 
 # Claude Code settings
 
-> Configure Claude Code with global and project-level settings, and environment variables.
-
-Claude Code offers a variety of settings to configure its behavior to meet your needs. You can configure Claude Code by running the `/config` command when using the interactive REPL, which opens a tabbed Settings interface where you can view status information and modify configuration options.
+* ways to configure Claude Code
+  * global & project-level settings
+  * environment variables
+  * `/claude` & then `/config`
+    * opens a tabbed Settings interface
 
 ## Settings files
 
-The `settings.json` file is our official mechanism for configuring Claude
-Code through hierarchical settings:
+* "settings.json"
+  * == official mechanism -- for -- configuring Claude Code
+  * **User settings**
+    * == "~/.claude/settings.json"
+    * apply | ALL projects
+  * **Project settings**
+    * | your project directory
+      * ".claude/settings.json"
+        * settings / checked | source control
+          * Reason:🧠shared with your team🧠
+      * ".claude/settings.local.json"
+        * settings / ❌NOT checked in❌
+          * | create this file -> Claude Code AUTOMATICALLY add | .gitignore 
+        * uses
+          * personal preferences & experimentation
+  * **enterprise managed policy settings**
+    * enterprise deployments of Claude Code
+    * 's priority > user settings & project settings' priority
+    * == 
+      * macOS
+        * "/Library/Application Support/ClaudeCode/managed-settings.json"
+      * Linux and WSL
+        * "/etc/claude-code/managed-settings.json"
+      * Windows
+        * "C:\ProgramData\ClaudeCode\managed-settings.json"
+  * **managed MCP servers**
+    * enterprise deployments of Claude Code
+    * override user-configured servers
+    * [Enterprise MCP configuration](claude.code.mcp.md#enterprise-mcp-configuration)
+      * macOS: `/Library/Application Support/ClaudeCode/managed-mcp.json`
+      * Linux and WSL: `/etc/claude-code/managed-mcp.json`
+      * Windows: `C:\ProgramData\ClaudeCode\managed-mcp.json`
+  * _Examples:_
 
-* **User settings** are defined in `~/.claude/settings.json` and apply to all
-  projects.
-* **Project settings** are saved in your project directory:
-  * `.claude/settings.json` for settings that are checked into source control and shared with your team
-  * `.claude/settings.local.json` for settings that are not checked in, useful for personal preferences and experimentation. Claude Code will configure git to ignore `.claude/settings.local.json` when it is created.
-* For enterprise deployments of Claude Code, we also support **enterprise
-  managed policy settings**. These take precedence over user and project
-  settings. System administrators can deploy policies to:
-  * macOS: `/Library/Application Support/ClaudeCode/managed-settings.json`
-  * Linux and WSL: `/etc/claude-code/managed-settings.json`
-  * Windows: `C:\ProgramData\ClaudeCode\managed-settings.json`
-* Enterprise deployments can also configure **managed MCP servers** that override
-  user-configured servers. See [Enterprise MCP configuration](/en/mcp#enterprise-mcp-configuration):
-  * macOS: `/Library/Application Support/ClaudeCode/managed-mcp.json`
-  * Linux and WSL: `/etc/claude-code/managed-mcp.json`
-  * Windows: `C:\ProgramData\ClaudeCode\managed-mcp.json`
+    ```JSON Example settings.json theme={null}
+    {
+      "permissions": {
+        "allow": [
+          "Bash(npm run lint)",
+          "Bash(npm run test:*)",
+          "Read(~/.zshrc)"
+        ],
+        "deny": [
+          "Bash(curl:*)",
+          "Read(./.env)",
+          "Read(./.env.*)",
+          "Read(./secrets/**)"
+        ]
+      },
+      "env": {
+        "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+        "OTEL_METRICS_EXPORTER": "otlp"
+      },
+      "companyAnnouncements": [
+        "Welcome to Acme Corp! Review our code guidelines at docs.acme.com",
+        "Reminder: Code reviews required for all PRs",
+        "New security policy in effect"
+      ]
+    }
+    ```
 
-```JSON Example settings.json theme={null}
-{
-  "permissions": {
-    "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm run test:*)",
-      "Read(~/.zshrc)"
-    ],
-    "deny": [
-      "Bash(curl:*)",
-      "Read(./.env)",
-      "Read(./.env.*)",
-      "Read(./secrets/**)"
-    ]
-  },
-  "env": {
-    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
-    "OTEL_METRICS_EXPORTER": "otlp"
-  },
-  "companyAnnouncements": [
-    "Welcome to Acme Corp! Review our code guidelines at docs.acme.com",
-    "Reminder: Code reviews required for all PRs",
-    "New security policy in effect"
-  ]
-}
-```
+### Available options
 
-### Available settings
+| Key                          | Description                                                                                                                                                                                                                                                                                                                          | Example                                                                                                                          |
+| :--------------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
+| `apiKeyHelper`               | Custom script, to be executed in `/bin/sh`, to generate an auth value. This value will be sent as `X-Api-Key` and `Authorization: Bearer` headers for model requests                                                                                                                                                                 | `/bin/generate_temp_api_key.sh`                                                                                                  |
+| `cleanupPeriodDays`          | How long to locally retain chat transcripts based on last activity date (default: 30 days)                                                                                                                                                                                                                                           | `20`                                                                                                                             |
+| `companyAnnouncements`       | Announcement to display to users at startup. If multiple announcements are provided, they will be cycled through at random.                                                                                                                                                                                                          | `["Welcome to Acme Corp! Review our code guidelines at docs.acme.com"]`                                                          |
+| `env`                        | == environment variables / applied                                                                                                                                                                                                                                                                                                   | ALL session                                                                                                                      | `{"FOO": "bar"}`                                                        |
+| `includeCoAuthoredBy`        | Whether to include the `co-authored-by Claude` byline in git commits and pull requests (default: `true`)                                                                                                                                                                                                                             | `false`                                                                                                                          |
+| `permissions`                | See table below for structure of permissions.                                                                                                                                                                                                                                                                                        |                                                                                                                                  |
+| `hooks`                      | Configure custom commands to run before or after tool executions. See [hooks documentation](/en/hooks)                                                                                                                                                                                                                               | `{"PreToolUse": {"Bash": "echo 'Running command...'"}}`                                                                          |
+| `disableAllHooks`            | Disable all [hooks](/en/hooks)                                                                                                                                                                                                                                                                                                       | `true`                                                                                                                           |
+| `model`                      | Override the default model to use for Claude Code                                                                                                                                                                                                                                                                                    | `"claude-sonnet-4-5-20250929"`                                                                                                   |
+| `statusLine`                 | Configure a custom status line to display context. See [statusLine documentation](/en/statusline)                                                                                                                                                                                                                                    | `{"type": "command", "command": "~/.claude/statusline.sh"}`                                                                      |
+| `outputStyle`                | Configure an output style to adjust the system prompt. See [output styles documentation](/en/output-styles)                                                                                                                                                                                                                          | `"Explanatory"`                                                                                                                  |
+| `forceLoginMethod`           | Use `claudeai` to restrict login to Claude.ai accounts, `console` to restrict login to Claude Console (API usage billing) accounts                                                                                                                                                                                                   | `claudeai`                                                                                                                       |
+| `forceLoginOrgUUID`          | Specify the UUID of an organization to automatically select it during login, bypassing the organization selection step. Requires `forceLoginMethod` to be set                                                                                                                                                                        | `"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`                                                                                         |
+| `enableAllProjectMcpServers` | Automatically approve all MCP servers defined in project `.mcp.json` files                                                                                                                                                                                                                                                           | `true`                                                                                                                           |
+| `enabledMcpjsonServers`      | List of specific MCP servers from `.mcp.json` files to approve                                                                                                                                                                                                                                                                       | `["memory", "github"]`                                                                                                           |
+| `disabledMcpjsonServers`     | List of specific MCP servers from `.mcp.json` files to reject                                                                                                                                                                                                                                                                        | `["filesystem"]`                                                                                                                 |
+| `allowedMcpServers`          | When set in managed-settings.json, allowlist of MCP servers users can configure. Undefined = no restrictions, empty array = lockdown. Applies to all scopes. Denylist takes precedence. See [Enterprise MCP configuration](/en/mcp#enterprise-mcp-configuration)                                                                     | `[{ "serverName": "github" }]`                                                                                                   |
+| `deniedMcpServers`           | When set in managed-settings.json, denylist of MCP servers that are explicitly blocked. Applies to all scopes including enterprise servers. Denylist takes precedence over allowlist. See [Enterprise MCP configuration](/en/mcp#enterprise-mcp-configuration)                                                                       | `[{ "serverName": "filesystem" }]`                                                                                               |
+| `awsAuthRefresh`             | == custom script / <br/> &nbsp;&nbsp; modifies the ".aws" directory (update credentials, SSO cache, config files) <br/> &nbsp;&nbsp; 's output is displayed \| UI <br/> &nbsp;&nbsp; ❌user input is NOT supported ❌ <br/> use cases <br/> &nbsp;&nbsp; browser-based authentication flows  == CLI displays a code / enter \| browser | `aws sso login --profile myprofile`                                                                                              |
+| `awsCredentialExport`        | == custom script / <br/> &nbsp;&nbsp; get AWS credentials <br/> &nbsp;&nbsp; outputs silently (== NOT shown | user) them as JSON <br/> use cases <br/> &nbsp;&nbsp; ❌you can NOT modify ".aws"❌ <br/> &nbsp;&nbsp; you MUST return credentials | `/bin/generate_aws_grant.sh`                                            |
 
-`settings.json` supports a number of options:
+* _Example:_ `awsCredentialExport`'s return
 
-| Key                          | Description                                                                                                                                                                                                                                                      | Example                                                                 |
-| :--------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
-| `apiKeyHelper`               | Custom script, to be executed in `/bin/sh`, to generate an auth value. This value will be sent as `X-Api-Key` and `Authorization: Bearer` headers for model requests                                                                                             | `/bin/generate_temp_api_key.sh`                                         |
-| `cleanupPeriodDays`          | How long to locally retain chat transcripts based on last activity date (default: 30 days)                                                                                                                                                                       | `20`                                                                    |
-| `companyAnnouncements`       | Announcement to display to users at startup. If multiple announcements are provided, they will be cycled through at random.                                                                                                                                      | `["Welcome to Acme Corp! Review our code guidelines at docs.acme.com"]` |
-| `env`                        | Environment variables that will be applied to every session                                                                                                                                                                                                      | `{"FOO": "bar"}`                                                        |
-| `includeCoAuthoredBy`        | Whether to include the `co-authored-by Claude` byline in git commits and pull requests (default: `true`)                                                                                                                                                         | `false`                                                                 |
-| `permissions`                | See table below for structure of permissions.                                                                                                                                                                                                                    |                                                                         |
-| `hooks`                      | Configure custom commands to run before or after tool executions. See [hooks documentation](/en/hooks)                                                                                                                                                           | `{"PreToolUse": {"Bash": "echo 'Running command...'"}}`                 |
-| `disableAllHooks`            | Disable all [hooks](/en/hooks)                                                                                                                                                                                                                                   | `true`                                                                  |
-| `model`                      | Override the default model to use for Claude Code                                                                                                                                                                                                                | `"claude-sonnet-4-5-20250929"`                                          |
-| `statusLine`                 | Configure a custom status line to display context. See [statusLine documentation](/en/statusline)                                                                                                                                                                | `{"type": "command", "command": "~/.claude/statusline.sh"}`             |
-| `outputStyle`                | Configure an output style to adjust the system prompt. See [output styles documentation](/en/output-styles)                                                                                                                                                      | `"Explanatory"`                                                         |
-| `forceLoginMethod`           | Use `claudeai` to restrict login to Claude.ai accounts, `console` to restrict login to Claude Console (API usage billing) accounts                                                                                                                               | `claudeai`                                                              |
-| `forceLoginOrgUUID`          | Specify the UUID of an organization to automatically select it during login, bypassing the organization selection step. Requires `forceLoginMethod` to be set                                                                                                    | `"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`                                |
-| `enableAllProjectMcpServers` | Automatically approve all MCP servers defined in project `.mcp.json` files                                                                                                                                                                                       | `true`                                                                  |
-| `enabledMcpjsonServers`      | List of specific MCP servers from `.mcp.json` files to approve                                                                                                                                                                                                   | `["memory", "github"]`                                                  |
-| `disabledMcpjsonServers`     | List of specific MCP servers from `.mcp.json` files to reject                                                                                                                                                                                                    | `["filesystem"]`                                                        |
-| `allowedMcpServers`          | When set in managed-settings.json, allowlist of MCP servers users can configure. Undefined = no restrictions, empty array = lockdown. Applies to all scopes. Denylist takes precedence. See [Enterprise MCP configuration](/en/mcp#enterprise-mcp-configuration) | `[{ "serverName": "github" }]`                                          |
-| `deniedMcpServers`           | When set in managed-settings.json, denylist of MCP servers that are explicitly blocked. Applies to all scopes including enterprise servers. Denylist takes precedence over allowlist. See [Enterprise MCP configuration](/en/mcp#enterprise-mcp-configuration)   | `[{ "serverName": "filesystem" }]`                                      |
-| `awsAuthRefresh`             | Custom script that modifies the `.aws` directory (see [advanced credential configuration](/en/amazon-bedrock#advanced-credential-configuration))                                                                                                                 | `aws sso login --profile myprofile`                                     |
-| `awsCredentialExport`        | Custom script that outputs JSON with AWS credentials (see [advanced credential configuration](/en/amazon-bedrock#advanced-credential-configuration))                                                                                                             | `/bin/generate_aws_grant.sh`                                            |
+  ```json  theme={null}
+  {
+    "Credentials": {
+      "AccessKeyId": "value",
+      "SecretAccessKey": "value",
+      "SessionToken": "value"
+    }
+  }
+  ```
 
 ### Permission settings
 
@@ -310,14 +336,15 @@ Learn more about the plugin system in the [plugins documentation](/en/plugins).
 
 ## Environment variables
 
-Claude Code supports the following environment variables to control its behavior:
-
-<Note>
-  All environment variables can also be configured in [`settings.json`](#available-settings). This is useful as a way to automatically set environment variables for each session, or to roll out a set of environment variables for your whole team or organization.
-</Note>
+* allows
+  * controlling its behavior
+* configured | "settings.json" `.env`
+* uses
+  * AUTOMATICALLY set environment variables / EACH session
+  * roll out a set of environment variables -- for -- your whole team OR organization
 
 | Variable                                   | Purpose                                                                                                                                                                                                                                                                                                                                                                                      |
-| :----------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :----------------------------------------- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ANTHROPIC_API_KEY`                        | API key sent as `X-Api-Key` header, typically for the Claude SDK (for interactive usage, run `/login`)                                                                                                                                                                                                                                                                                       |
 | `ANTHROPIC_AUTH_TOKEN`                     | Custom value for the `Authorization` header (the value you set here will be prefixed with `Bearer `)                                                                                                                                                                                                                                                                                         |
 | `ANTHROPIC_CUSTOM_HEADERS`                 | Custom headers you want to add to the request (in `Name: Value` format)                                                                                                                                                                                                                                                                                                                      |
@@ -325,8 +352,8 @@ Claude Code supports the following environment variables to control its behavior
 | `ANTHROPIC_DEFAULT_OPUS_MODEL`             | See [Model configuration](/en/model-config#environment-variables)                                                                                                                                                                                                                                                                                                                            |
 | `ANTHROPIC_DEFAULT_SONNET_MODEL`           | See [Model configuration](/en/model-config#environment-variables)                                                                                                                                                                                                                                                                                                                            |
 | `ANTHROPIC_FOUNDRY_API_KEY`                | API key for Azure AI Foundry authentication (see [Azure AI Foundry](/en/azure-ai-foundry))                                                                                                                                                                                                                                                                                                   |
-| `ANTHROPIC_MODEL`                          | Name of the model setting to use (see [Model Configuration](/en/model-config#environment-variables))                                                                                                                                                                                                                                                                                         |
-| `ANTHROPIC_SMALL_FAST_MODEL`               | \[DEPRECATED] Name of [Haiku-class model for background tasks](/en/costs)                                                                                                                                                                                                                                                                                                                    |
+| `ANTHROPIC_MODEL`                          | == Name of the model setting / use <br/> [Model Configuration](claude.code.model-config#environment-variables)                                                                                                                                                                                                                                                                               |
+| `ANTHROPIC_SMALL_FAST_MODEL`               | ⚠️DEPRECATED⚠️ <br/> Name of [Haiku-class model for background tasks](claude.code.costs.md)                                                                                                                                                                                                                                                                                                  |
 | `ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION`    | Override AWS region for the Haiku-class model when using Bedrock                                                                                                                                                                                                                                                                                                                             |
 | `AWS_BEARER_TOKEN_BEDROCK`                 | Bedrock API key for authentication (see [Bedrock API keys](https://aws.amazon.com/blogs/machine-learning/accelerate-ai-development-with-amazon-bedrock-api-keys/))                                                                                                                                                                                                                           |
 | `BASH_DEFAULT_TIMEOUT_MS`                  | Default timeout for long-running bash commands                                                                                                                                                                                                                                                                                                                                               |

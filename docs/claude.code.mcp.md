@@ -1224,11 +1224,14 @@ For organizations that need centralized control over MCP servers, Claude Code su
 
 ### Setting up enterprise MCP configuration
 
-System administrators can deploy an enterprise MCP configuration file alongside the managed settings file:
+* System administrators can deploy an enterprise MCP configuration file alongside the managed settings file:
 
-* **macOS**: `/Library/Application Support/ClaudeCode/managed-mcp.json`
-* **Windows**: `C:\ProgramData\ClaudeCode\managed-mcp.json`
-* **Linux**: `/etc/claude-code/managed-mcp.json`
+* **macOS**
+  * "/Library/Application Support/ClaudeCode/managed-mcp.json"
+* **Windows**
+  * "C:\ProgramData\ClaudeCode\managed-mcp.json
+* **Linux**
+  * "/etc/claude-code/managed-mcp.json"
 
 The `managed-mcp.json` file uses the same format as a standard `.mcp.json` file:
 

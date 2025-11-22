@@ -20,46 +20,49 @@ https://code.claude.com/docs/en/network-config.md
 
 ### -- via -- Environment variables
 
-Claude Code respects standard proxy environment variables:
+* Claude Code
+  * respects standard proxy environment variables
 
-```bash  theme={null}
-# HTTPS proxy (recommended)
-export HTTPS_PROXY=https://proxy.example.com:8080
-
-# HTTP proxy (if HTTPS not available)
-export HTTP_PROXY=http://proxy.example.com:8080
-
-# Bypass proxy for specific requests - space-separated format
-export NO_PROXY="localhost 192.168.1.1 example.com .example.com"
-# Bypass proxy for specific requests - comma-separated format
-export NO_PROXY="localhost,192.168.1.1,example.com,.example.com"
-# Bypass proxy for all requests
-export NO_PROXY="*"
-```
-
-<Note>
-  Claude Code does not support SOCKS proxies.
-</Note>
+    ```bash  theme={null}
+    # HTTPS proxy (recommended)
+    export HTTPS_PROXY=https://proxy.example.com:8080
+    
+    # HTTP proxy (if HTTPS not available)
+    export HTTP_PROXY=http://proxy.example.com:8080
+    
+    # Bypass proxy for specific requests - space-separated format
+    export NO_PROXY="localhost 192.168.1.1 example.com .example.com"
+    # Bypass proxy for specific requests - comma-separated format
+    export NO_PROXY="localhost,192.168.1.1,example.com,.example.com"
+    # Bypass proxy for all requests
+    export NO_PROXY="*"
+    ```
+  * ❌does NOT support SOCKS proxies❌
 
 ### Basic authentication
 
-If your proxy requires basic authentication, include credentials in the proxy URL:
+* use case
+  * proxy / requires basic authentication
+* steps
+  * include credentials | proxy URL
 
-```bash  theme={null}
-export HTTPS_PROXY=http://username:password@proxy.example.com:8080
-```
+    ```bash  theme={null}
+    export HTTPS_PROXY=http://username:password@proxy.example.com:8080
+    ```
+    * recommendations
+      * | scripts, 
+        * ❌NOT hardcode passwords❌
+      * use 
+        * environment variables, OR
+        * secure credential storage
 
-<Warning>
-  Avoid hardcoding passwords in scripts. Use environment variables or secure credential storage instead.
-</Warning>
-
-<Tip>
-  For proxies requiring advanced authentication (NTLM, Kerberos, etc.), consider using an LLM Gateway service that supports your authentication method.
-</Tip>
+* recommendations
+  * 👀if proxies require advanced authentication (NTLM, Kerberos, etc.) -> use an LLM Gateway service / supports your authentication method👀
 
 ## Custom CA certificates
 
-If your enterprise environment uses custom CAs for HTTPS connections (whether through a proxy or direct API access), configure Claude Code to trust them:
+* uses
+  * enterprise environment uses custom CAs -- for -- HTTPS connections (either proxy OR direct API)
 
 ```bash  theme={null}
 export NODE_EXTRA_CA_CERTS=/path/to/ca-cert.pem

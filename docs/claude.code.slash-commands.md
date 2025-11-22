@@ -21,7 +21,7 @@ https://docs.anthropic.com/en/docs/claude-code/slash-commands
 | `/help`                   | Get usage help                                                                 |
 | `/init`                   | initialize project -- with -- [CLAUDE.md guide](docs.claude-code.memory.md)    |
 | `/login`                  | Switch Anthropic accounts                                                      |
-| `/logout`                 | Sign out from your Anthropic account                                           |
+| `/logout`                 | Sign out -- from -- your Anthropic account                                     |
 | `/mcp`                    | Manage MCP server connections and OAuth authentication                         |
 | `/memory`                 | edit ["CLAUDE.md" memory files](docs.claude-code.memory.md)                    |
 | `/model`                  | Select or change the AI model                                                  |

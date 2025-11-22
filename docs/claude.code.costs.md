@@ -2,42 +2,69 @@ https://code.claude.com/docs/en/costs.md
 
 # Manage costs effectively
 
-> Learn how to track and optimize token usage and costs when using Claude Code.
+* goal
+  * how to track & optimize
+    * token usage
+    * costs
 
-Claude Code consumes tokens for each interaction. The average cost is \$6 per developer per day, with daily costs remaining below \$12 for 90% of users.
-
-For team usage, Claude Code charges by API token consumption. On average, Claude Code costs \~\$100-200/developer per month with Sonnet 4.5 though there is large variance depending on how many instances users are running and whether they're using it in automation.
+* / EACH interaction,
+  * Claude Code consumes tokens 
+* average cost
+  * == $[6, 12] / developer / day
+  * Sonnet 4.5
+    * \~\$100-200/developer / month
+* pricing
+  * | [individual users](https://www.claude.com/pricing),
+    * fix
+  * | team & enterprise
+  * | API
+    * 👀-- based on -- API token consumption👀
+      * == pay-as-you-use
+      * == depend on
+        * NUMBER of instances are running
+        * use in automation (automatic scripts, CI/CD, ...)
 
 ## Track your costs
 
-### Using the `/cost` command
+### `/cost` command
 
-<Note>
-  The `/cost` command is not intended for Claude Max and Pro subscribers.
-</Note>
+* ❌NOT uses | ❌
+  * Claude Max & Pro subscribers
+    * Reason:🧠fix costing🧠
 
-The `/cost` command provides detailed token usage statistics for your current session:
+* provides
+  * detailed token usage statistics / your CURRENT session
 
-```
-Total cost:            $0.55
-Total duration (API):  6m 19.7s
-Total duration (wall): 6h 33m 10.2s
-Total code changes:    0 lines added, 0 lines removed
-```
+  ```
+  Total cost:            $0.55
+  Total duration (API):  6m 19.7s
+  Total duration (wall): 6h 33m 10.2s
+  Total code changes:    0 lines added, 0 lines removed
+  ```
 
 ### Additional tracking options
 
-Check [historical usage](https://support.claude.com/en/articles/9534590-cost-and-usage-reporting-in-console) in the Claude Console (requires Admin or Billing role) and set [workspace spend limits](https://support.claude.com/en/articles/9796807-creating-and-managing-workspaces) for the Claude Code workspace (requires Admin role).
+* requirements
+  * ⚠️Admin OR Billing role⚠️ 
 
-<Note>
-  When you first authenticate Claude Code with your Claude Console account, a workspace called "Claude Code" is automatically created for you. This workspace provides centralized cost tracking and management for all Claude Code usage in your organization. You cannot create API keys for this workspace - it is exclusively for Claude Code authentication and usage.
-</Note>
+* | Claude Console,
+  * check [historical usage](https://support.claude.com/en/articles/9534590-cost-and-usage-reporting-in-console) 
+  * set [workspace spend limits](https://support.claude.com/en/articles/9796807-creating-and-managing-workspaces) | Claude Code workspace
+
+* TODO:
+When you first authenticate Claude Code with your Claude Console account, a workspace called "Claude Code" is automatically created for you
+This workspace provides centralized cost tracking and management for all Claude Code usage in your organization
+You cannot create API keys for this workspace - it is exclusively for Claude Code authentication and usage.
 
 ## Managing costs for teams
 
-When using Claude API, you can limit the total Claude Code workspace spend. To configure, [follow these instructions](https://support.claude.com/en/articles/9796807-creating-and-managing-workspaces). Admins can view cost and usage reporting by [following these instructions](https://support.claude.com/en/articles/9534590-cost-and-usage-reporting-in-console).
+When using Claude API, you can limit the total Claude Code workspace spend
+* To configure, [follow these instructions](https://support.claude.com/en/articles/9796807-creating-and-managing-workspaces)
+* Admins can view cost and usage reporting by [following these instructions](https://support.claude.com/en/articles/9534590-cost-and-usage-reporting-in-console).
 
-On Bedrock and Vertex, Claude Code does not send metrics from your cloud. In order to get cost metrics, several large enterprises reported using [LiteLLM](/en/third-party-integrations#litellm), which is an open-source tool that helps companies [track spend by key](https://docs.litellm.ai/docs/proxy/virtual_keys#tracking-spend). This project is unaffiliated with Anthropic and we have not audited its security.
+On Bedrock and Vertex, Claude Code does not send metrics from your cloud
+* In order to get cost metrics, several large enterprises reported using [LiteLLM](/en/third-party-integrations#litellm), which is an open-source tool that helps companies [track spend by key](https://docs.litellm.ai/docs/proxy/virtual_keys#tracking-spend)
+* This project is unaffiliated with Anthropic and we have not audited its security.
 
 ### Rate limit recommendations
 

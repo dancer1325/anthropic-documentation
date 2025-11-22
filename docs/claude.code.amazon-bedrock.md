@@ -69,56 +69,44 @@ export AWS_BEARER_TOKEN_BEDROCK=your-bedrock-api-key
 
 * add these settings | your [Claude Code settings](claude.code.settings.md)
 
-When Claude Code detects that your AWS credentials are expired (either locally based on their timestamp or when Bedrock returns a credential error), 
-it will automatically run your configured `awsAuthRefresh` and/or `awsCredentialExport` commands to obtain new credentials before retrying the request.
+* if Claude Code detects that your AWS credentials are expired (locally -- based on -- their timestamp OR Bedrock returns a credential error) -> BEFORE retrying the request, obtain NEW credentials -- AUTOMATICALLY running -- your configured `awsAuthRefresh` &/OR `awsCredentialExport` commands  
 
-##### Example configuration
+* _Example configuration:_
 
-```json  theme={null}
-{
-  "awsAuthRefresh": "aws sso login --profile myprofile",
-  "env": {
-    "AWS_PROFILE": "myprofile"
+  ```json  theme={null}
+  {
+    "awsAuthRefresh": "aws sso login --profile myprofile",
+    "env": {
+      "AWS_PROFILE": "myprofile"
+    }
   }
-}
-```
-
-##### Configuration settings explained
-
-**`awsAuthRefresh`**: Use this for commands that modify the `.aws` directory (e.g., updating credentials, SSO cache, or config files). Output is shown to the user (but user input is not supported), making it suitable for browser-based authentication flows where the CLI displays a code to enter in the browser.
-
-**`awsCredentialExport`**: Only use this if you cannot modify `.aws` and must directly return credentials. Output is captured silently (not shown to the user). The command must output JSON in this format:
-
-```json  theme={null}
-{
-  "Credentials": {
-    "AccessKeyId": "value",
-    "SecretAccessKey": "value",
-    "SessionToken": "value"
-  }
-}
-```
+  ```
 
 ### 3. Configure Claude Code
 
-Set the following environment variables to enable Bedrock:
+* environment variables / enable Bedrock
 
-```bash  theme={null}
-# Enable Bedrock integration
-export CLAUDE_CODE_USE_BEDROCK=1
-export AWS_REGION=us-east-1  # or your preferred region
+  ```bash  theme={null}
+  # Enable Bedrock integration
+  export CLAUDE_CODE_USE_BEDROCK=1
+  
+  export AWS_REGION=us-east-1  # or your preferred region
+  # required -- Reason:🧠Claude Code does NOT read from the ".aws"🧠 --
+  
+  # Optional: Override the region for the small/fast model (Haiku)
+  export ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION=us-west-2
+  ```
 
-# Optional: Override the region for the small/fast model (Haiku)
-export ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION=us-west-2
-```
+* | **VS Code Extension users**
+  * [configure environment variables | VS Code extension settings](claude.code.vs-code.md#using-third-party-providers)
+    * ⚠️!= export them in your shell⚠️
 
-**For VS Code Extension users**: Configure environment variables in the VS Code extension settings instead of exporting them in your shell. See [Using Third-Party Providers in VS Code](/en/vs-code#using-third-party-providers-vertex-and-bedrock) for detailed instructions. All environment variables shown in this guide should work when configured through the VS Code extension settings.
+* `/login` & `/logout` commands
+  * ⚠️are disabled⚠️
+    * Reason:🧠authentication is handled -- through -- AWS credentials🧠
 
-When enabling Bedrock for Claude Code, keep the following in mind:
-
-* `AWS_REGION` is a required environment variable. Claude Code does not read from the `.aws` config file for this setting.
-* When using Bedrock, the `/login` and `/logout` commands are disabled since authentication is handled through AWS credentials.
-* You can use settings files for environment variables like `AWS_PROFILE` that you don't want to leak to other processes. See [Settings](/en/settings) for more information.
+* You can use settings files for environment variables like `AWS_PROFILE` that you don't want to leak to other processes
+* See [Settings](/en/settings) for more information.
 
 ### 4. Model configuration
 
@@ -216,18 +204,22 @@ For details, see [Bedrock IAM documentation](https://docs.aws.amazon.com/bedrock
 </Note>
 
 ## Troubleshooting
+* Problem1: region issues
+  * Solution1: switch to a region / supports the model
+    * `aws bedrock list-inference-profiles --region your-region`
+      * check model availability 
+    * `export AWS_REGION=us-east-1`
+      * switch to a supported region
+  * Solution2: use [inference profiles](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html) / cross-region access
 
-If you encounter region issues:
+* Problem2: "on-demand throughput isn’t supported"
+  * Solution: specify the model -- as an -- [inference profile ID](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html)
 
-* Check model availability: `aws bedrock list-inference-profiles --region your-region`
-* Switch to a supported region: `export AWS_REGION=us-east-1`
-* Consider using inference profiles for cross-region access
-
-If you receive an error "on-demand throughput isn’t supported":
-
-* Specify the model as an [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html) ID
-
-Claude Code uses the Bedrock [Invoke API](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModelWithResponseStream.html) and does not support the Converse API.
+* Claude Code
+  * uses
+    * Bedrock [Invoke API](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModelWithResponseStream.html) 
+  * NOT support
+    * Bedrock Converse API
 
 ## Additional resources
 
