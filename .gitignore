@@ -7,3 +7,5 @@ download_agents-and-tools_docs.py
 download_build-with-claude_docs.py
 download_test-and-evaluate_docs.py
 download_resources_prompt-library.py
+**/http-client.private.env.json
+.idea
