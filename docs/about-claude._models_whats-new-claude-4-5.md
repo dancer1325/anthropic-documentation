@@ -2,12 +2,12 @@ https://docs.claude.com/en/docs/about-claude/models/whats-new-claude-4-5.md
 
 # What's new in Claude 4.5
 
----
-
-Claude 4.5 introduces two models designed for different use cases:
-
-- **Claude Sonnet 4.5**: Our best model for complex agents and coding, with the highest intelligence across most tasks
-- **Claude Haiku 4.5**: Our fastest and most intelligent Haiku model with near-frontier performance. The first Haiku model with extended thinking
+* introduces 2 models
+  - **Claude Sonnet 4.5**
+    - TODOL Our best model for complex agents and coding, with the highest intelligence across most tasks
+  - **Claude Haiku 4.5**
+    - Our fastest and most intelligent Haiku model with near-frontier performance
+    - The first Haiku model with extended thinking
 
 ## Key improvements in Sonnet 4.5 over Sonnet 4
 

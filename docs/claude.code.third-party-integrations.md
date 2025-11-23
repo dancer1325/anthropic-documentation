@@ -100,13 +100,13 @@ are used in LLM gateway scenarios where the gateway handles provider authenticat
 ### Direct provider access
 
 * the simplest setup
-* Have existing AWS or GCP infrastructure
+* existing AWS or GCP infrastructure
 * Need provider-native monitoring and compliance
 
 ### Corporate proxy
 
-* Have existing corporate proxy requirements
-* Need traffic monitoring and compliance
+* existing corporate proxy requirements
+* need traffic monitoring & compliance
 * route all traffic -- through -- specific network paths
 
 ### LLM Gateway
@@ -141,29 +141,37 @@ are used in LLM gateway scenarios where the gateway handles provider authenticat
 
 ### 2. Simplify deployment
 
-* TODO: If you have a custom development environment, 
-we find that creating a "one click" way to install Claude Code is key to growing adoption across an organization.
+* --  via -- "1 click" way to install Claude Code
 
 ### 3. Start with guided usage
 
-Encourage new users to try Claude Code for codebase Q\&A, or on smaller bug fixes or feature requests
-Ask Claude Code to make a plan
-* Check Claude's suggestions and give feedback if it's off-track
-* Over time, as users understand this new paradigm better, then they'll be more effective at letting Claude Code run more agentically.
+* | codebase,
+  * Q\&A,
+  * smaller bug fixes OR feature requests
+* Ask Claude Code to make a plan
+* agentically
+  * == Claude Code runs -- as -- autonomous agents
 
 ### 4. Configure security policies
 
-Security teams can configure managed permissions for what Claude Code is and is not allowed to do, which cannot be overwritten by local configuration
-* [Learn more](/en/docs/claude-code/security).
+* managed permissions
+  * == what Claude Code
+    * is ALLOWED
+    * is NOT ALLOWED
+  * ❌can NOT be overwritten -- by -- local configuration❌
+* [MORE](claude.code.security.md)
 
 ### 5. Leverage MCP for integrations
 
-MCP is a great way to give Claude Code more information, such as connecting to ticket management systems or error logs
-* We recommend that one central team configures MCP servers and checks a `.mcp.json` configuration into the codebase so that all users benefit
-* [Learn more](/en/docs/claude-code/mcp).
-
-At Anthropic, we trust Claude Code to power development across every Anthropic codebase
-* We hope you enjoy using Claude Code as much as we do!
+* MCP
+  * allows
+    * giving Claude Code MORE information 
+      * _Examples:_ connecting to ticket management systems OR error logs
+  * recommendations
+    * 1 central team 
+      * configures MCP servers
+      * checks a ".mcp.json" configuration -- into the -- codebase
+* [MORE](claude.code.mcp.md)
 
 ## Next steps
 

@@ -14,6 +14,9 @@ check
     * [Intro to Claude](docs.intro.md)
     * [Quickstart](docs.get-started.md)
   * Models
+    * [overview](about-claude._models_overview.md)
+    * [choosing a model](about-claude._models_choosing-a-model.md)
+    * [new | Claude 4.5](about-claude._models_whats-new-claude-4-5.md)
     * TODO:
   * TODO:
   * Capabilities

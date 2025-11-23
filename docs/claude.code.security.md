@@ -2,19 +2,28 @@ https://code.claude.com/docs/en/security.md
 
 # Security
 
-> Learn about Claude Code's security safeguards and best practices for safe usage.
+* goal
+  * Claude Code's 
+    * security safeguards
+    * best practices -- for -- safe usage
 
 ## How we approach security
 
 ### Security foundation
 
-Your code's security is paramount. Claude Code is built with security at its core, developed according to Anthropic's comprehensive security program. Learn more and access resources (SOC 2 Type 2 report, ISO 27001 certificate, etc.) at [Anthropic Trust Center](https://trust.anthropic.com).
+* Your code's security is paramount
+* Claude Code is built with security at its core, developed according to Anthropic's comprehensive security program
+* Learn more and access resources (SOC 2 Type 2 report, ISO 27001 certificate, etc.) at [Anthropic Trust Center](https://trust.anthropic.com).
 
 ### Permission-based architecture
 
-Claude Code uses strict read-only permissions by default. When additional actions are needed (editing files, running tests, executing commands), Claude Code requests explicit permission. Users control whether to approve actions once or allow them automatically.
+Claude Code uses strict read-only permissions by default
+* When additional actions are needed (editing files, running tests, executing commands), Claude Code requests explicit permission
+* Users control whether to approve actions once or allow them automatically.
 
-We designed Claude Code to be transparent and secure. For example, we require approval for bash commands before executing them, giving you direct control. This approach enables users and organizations to configure permissions directly.
+We designed Claude Code to be transparent and secure
+* For example, we require approval for bash commands before executing them, giving you direct control
+* This approach enables users and organizations to configure permissions directly.
 
 For detailed permission configuration, see [Identity and Access Management](/en/iam).
 
