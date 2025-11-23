@@ -2,39 +2,57 @@ https://docs.claude.com/en/docs/about-claude/models/overview.md
 
 # Models overview
 
-Claude is a family of state-of-the-art large language models developed by Anthropic. This guide introduces our models and compares their performance.
+* goal
+  * Claude's models / compare them
 
 ---
 
 ## Choosing a model
 
-If you're unsure which model to use, we recommend starting with **Claude Sonnet 4.5**. It offers the best balance of intelligence, speed, and cost for most use cases, with exceptional performance in coding and agentic tasks.
+* recommendations
+  * 👀use **Claude Sonnet 4.5**👀
+    * Reason:🧠
+      * balance of: intelligence + speed + cost
+      * MULTIPLE use cases
+      * exceptional performance | coding and agentic tasks🧠
 
-All current Claude models support text and image input, text output, multilingual capabilities, and vision. Models are available via the Anthropic API, AWS Bedrock, and Google Vertex AI.
-
-Once you've picked a model, [learn how to make your first API call](/docs/en/get-started).
+* Claude models 
+  * support
+    * text & image input,
+    * text output,
+    * multilingual capabilities,
+    * vision
+  * available -- via the -- 
+    * Anthropic API,
+    * AWS Bedrock,
+    * Google Vertex AI
 
 ### Latest models comparison
 
-| Feature | Claude Sonnet 4.5 | Claude Haiku 4.5 | Claude Opus 4.1 |
-|:--------|:------------------|:-----------------|:----------------|
-| **Description** | Our smartest model for complex agents and coding | Our fastest model with near-frontier intelligence | Exceptional model for specialized reasoning tasks |
-| **Claude API ID** | claude-sonnet-4-5-20250929 | claude-haiku-4-5-20251001 | claude-opus-4-1-20250805 |
-| **Claude API alias**<sup>1</sup> | claude-sonnet-4-5 | claude-haiku-4-5 | claude-opus-4-1 |
-| **AWS Bedrock ID** | anthropic.claude-sonnet-4-5-20250929-v1:0 | anthropic.claude-haiku-4-5-20251001-v1:0 | anthropic.claude-opus-4-1-20250805-v1:0 |
-| **GCP Vertex AI ID** | claude-sonnet-4-5@20250929 | claude-haiku-4-5@20251001 | claude-opus-4-1@20250805 |
-| **Pricing**<sup>2</sup> | \$3 / input MTok<br/>\$15 / output MTok | \$1 / input MTok<br/>\$5 / output MTok | \$15 / input MTok<br/>\$75 / output MTok |
-| **[Extended thinking](/docs/en/build-with-claude/extended-thinking)** | Yes | Yes | Yes |
-| **[Priority Tier](/docs/en/api/service-tiers)** | Yes | Yes | Yes |
-| **Comparative latency** | Fast | Fastest | Moderate |
-| **Context window** | <Tooltip tooltipContent="~150K words \ ~680K unicode characters">200K tokens</Tooltip> / <br/> <Tooltip tooltipContent="~750K words \ ~3.4M unicode characters">1M tokens</Tooltip> (beta)<sup>3</sup> | <Tooltip tooltipContent="~150K words \ ~680K unicode characters">200K tokens</Tooltip> | <Tooltip tooltipContent="~150K words \ ~680K unicode characters">200K tokens</Tooltip> |
-| **Max output** | 64K tokens | 64K tokens | 32K tokens |
-| **Reliable knowledge cutoff** | Jan 2025<sup>4</sup> | Feb 2025 | Jan 2025<sup>4</sup> |
-| **Training data cutoff** | Jul 2025 | Jul 2025 | Mar 2025 |
+| Feature                                                               | Claude Sonnet 4.5                                                                                                                                                                                      | Claude Haiku 4.5                                                                       | Claude Opus 4.1                                                                                    |
+|:----------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
+| **Description**                                                       | OUR smartest model <br/> use cases <br/> &nbsp;&nbsp; complex agents and coding                                                                                                                        | fastest model                                                                          | use cases <br/> &nbsp;&nbsp; specialized reasoning tasks                                           |
+| **Claude API ID**                                                     | claude-sonnet-4-5-20250929                                                                                                                                                                             | claude-haiku-4-5-20251001                                                              | claude-opus-4-1-20250805                                                                           |
+| **Claude API alias**<sup>1</sup>                                      | claude-sonnet-4-5                                                                                                                                                                                      | claude-haiku-4-5                                                                       | claude-opus-4-1                                                                                    |
+| **AWS Bedrock ID**                                                    | anthropic.claude-sonnet-4-5-20250929-v1:0                                                                                                                                                              | anthropic.claude-haiku-4-5-20251001-v1:0                                               | anthropic.claude-opus-4-1-20250805-v1:0                                                            |
+| **GCP Vertex AI ID**                                                  | claude-sonnet-4-5@20250929                                                                                                                                                                             | claude-haiku-4-5@20251001                                                              | claude-opus-4-1@20250805                                                                           |
+| [**Pricing**](about-claude._pricing.md)                               | \$3 / input MTok<br/>\$15 / output MTok                                                                                                                                                                | \$1 / input MTok<br/>\$5 / output MTok                                                 | \$15 / input MTok<br/>\$75 / output MTok                                                           |
+| **[Extended thinking](build-with-claude._extended-thinking.md)** | Yes                                                                                                                                                                                                    | Yes                                                                                    | Yes                                                                                                |
+| **[Priority Tier](/docs/en/api/service-tiers)**                       | Yes                                                                                                                                                                                                    | Yes                                                                                    | Yes                                                                                                |
+| **Comparative latency**                                               | Fast                                                                                                                                                                                                   | Fastest                                                                                | Moderate                                                                                           |
+| **Context window**                                                    | <Tooltip tooltipContent="~150K words \ ~680K unicode characters">200K tokens</Tooltip> / <br/> <Tooltip tooltipContent="~750K words \ ~3.4M unicode characters">1M tokens</Tooltip> (beta)<sup>3</sup> | <Tooltip tooltipContent="~150K words \ ~680K unicode characters">200K tokens</Tooltip> | <Tooltip tooltipContent="~150K words \ ~680K unicode characters">200K tokens</Tooltip>             |
+| **Max output**                                                        | 64K tokens                                                                                                                                                                                             | 64K tokens                                                                             | 32K tokens                                                                                         |
+| **Reliable knowledge cutoff**                                         | Jan 2025<sup>4</sup>                                                                                                                                                                                   | Feb 2025                                                                               | Jan 2025<sup>4</sup>                                                                               |
+| **Training data cutoff**                                              | Jul 2025                                                                                                                                                                                               | Jul 2025                                                                               | Mar 2025                                                                                           |
 
-_<sup>1 - Aliases automatically point to the most recent model snapshot. When we release new model snapshots, we migrate aliases to point to the newest version of a model, typically within a week of the new release. While aliases are useful for experimentation, we recommend using specific model versions (e.g., `claude-sonnet-4-5-20250929`) in production applications to ensure consistent behavior.</sup>_
-
-_<sup>2 - See our [pricing page](/docs/en/about-claude/pricing) for complete pricing information including batch API discounts, prompt caching rates, extended thinking costs, and vision processing fees.</sup>_
+* _<sup>1 
+  * Aliases
+    * by default, point -- to the -- most recent model snapshot
+    * uses
+      * experimentation
+    * recommendations
+      * | production, specify model versions (_Example:_ `claude-sonnet-4-5-20250929`)
+        * Reason:🧠 ensure consistent behavior🧠
 
 _<sup>3 - Claude Sonnet 4.5 supports a [1M token context window](/docs/en/build-with-claude/context-windows#1m-token-context-window) when using the `context-1m-2025-08-07` beta header. [Long context pricing](/docs/en/about-claude/pricing#long-context-pricing) applies to requests exceeding 200K tokens.</sup>_
 
@@ -44,9 +62,10 @@ _<sup>4 - **Reliable knowledge cutoff** indicates the date through which a model
 
 <Note>Starting with **Claude Sonnet 4.5 and all future models**, AWS Bedrock and Google Vertex AI offer two endpoint types: **global endpoints** (dynamic routing for maximum availability) and **regional endpoints** (guaranteed data routing through specific geographic regions). For more information, see the [third-party platform pricing section](/docs/en/about-claude/pricing#third-party-platform-pricing).</Note>
 
-<section title="Legacy models">
-
-The following models are still available but we recommend migrating to current models for improved performance:
+* Legacy models
+  * models /
+    * STILL available
+    * recommended to migrate -- to -- current models
 
 | Feature | Claude Sonnet 4 | Claude Sonnet 3.7 | Claude Opus 4 | Claude Haiku 3.5 | Claude Haiku 3 |
 |:--------|:----------------|:------------------|:--------------|:-----------------|:---------------|
@@ -70,8 +89,6 @@ _<sup>2 - **Reliable knowledge cutoff** indicates the date through which a model
 _<sup>3 - Some Haiku models have a single training data cutoff date.</sup>_
 
 _<sup>4 - Include the beta header `output-128k-2025-02-19` in your API request to increase the maximum output token length to 128K tokens for Claude Sonnet 3.7. We strongly suggest using our [streaming Messages API](/docs/en/build-with-claude/streaming) to avoid timeouts when generating longer outputs. See our guidance on [long requests](/docs/en/api/errors#long-requests) for more details.</sup>_
-
-</section>
 
 ## Prompt and output performance
 

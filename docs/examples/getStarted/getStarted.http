@@ -1,0 +1,16 @@
+### POST
+POST https://api.anthropic.com/v1/messages
+x-api-key: {{ANTHROPIC_API_KEY}}
+anthropic-version: 2023-06-01
+Content-Type: application/json
+
+{
+  "model": "claude-sonnet-4-5",
+  "max_tokens": 1000,
+  "messages": [
+    {
+      "role": "user",
+      "content": "What should I search for to find the latest developments in renewable energy?"
+    }
+  ]
+}

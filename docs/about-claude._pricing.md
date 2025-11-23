@@ -2,17 +2,11 @@ https://docs.claude.com/en/docs/about-claude/pricing.md
 
 # Pricing
 
-Learn about Anthropic's pricing structure for models and features
-
----
-
-This page provides detailed pricing information for Anthropic's models and features. All prices are in USD.
-
-For the most current pricing information, please visit [claude.com/pricing](https://claude.com/pricing).
+* [MOST current pricing information](https://claude.com/pricing)
 
 ## Model pricing
 
-The following table shows pricing for all Claude models across different usage tiers:
+* Claude models pricing / usage tiers
 
 | Model             | Base Input Tokens | 5m Cache Writes | 1h Cache Writes | Cache Hits & Refreshes | Output Tokens |
 |-------------------|-------------------|-----------------|-----------------|----------------------|---------------|
@@ -26,37 +20,36 @@ The following table shows pricing for all Claude models across different usage t
 | Claude Opus 3 ([deprecated](/docs/en/about-claude/model-deprecations))    | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Haiku 3    | $0.25 / MTok      | $0.30 / MTok    | $0.50 / MTok    | $0.03 / MTok | $1.25 / MTok  |
 
-<Note>
-MTok = Million tokens. The "Base Input Tokens" column shows standard input pricing, "Cache Writes" and "Cache Hits" are specific to [prompt caching](/docs/en/build-with-claude/prompt-caching), and "Output Tokens" shows output pricing. Prompt caching offers both 5-minute (default) and 1-hour cache durations to optimize costs for different use cases.
+* MTok
+  * == Million tokens
+* "Base Input Tokens" 
+  * == standard input pricing
+* "Cache Writes" and "Cache Hits"
+  * ⚠️related to [prompt caching](build-with-claude._prompt-caching.md)⚠️
+  * 5m
+    * default one
+    * 's pricing == 1.25 * base input tokens pricing
+  * 1h
+    * 's pricing == 2 * base input tokens pricing
+* "Output Tokens"
+  * shows output pricing
 
-The table above reflects the following pricing multipliers for prompt caching:
-- 5-minute cache write tokens are 1.25 times the base input tokens price
-- 1-hour cache write tokens are 2 times the base input tokens price
-- Cache read tokens are 0.1 times the base input tokens price
-</Note>
+## [Third-party platform pricing](claude.code.third-party-integrations.md)
 
-## Third-party platform pricing
-
-Claude models are available on [AWS Bedrock](/docs/en/build-with-claude/claude-on-amazon-bedrock), [Google Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). For official pricing, visit:
 - [AWS Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
 - [Google Vertex AI pricing](https://cloud.google.com/vertex-ai/generative-ai/pricing)
 - [Microsoft Foundry pricing](https://azure.microsoft.com/en-us/pricing/details/ai-foundry/#pricing)
 
-<Note>
-**Regional endpoint pricing for Claude 4.5 models and beyond**
-
-Starting with Claude Sonnet 4.5 and Haiku 4.5, AWS Bedrock and Google Vertex AI offer two endpoint types:
-- **Global endpoints**: Dynamic routing across regions for maximum availability
-- **Regional endpoints**: Data routing guaranteed within specific geographic regions
-
-Regional endpoints include a 10% premium over global endpoints. **The Claude API (1P) is global by default and unaffected by this change.** The Claude API is global-only (equivalent to the global endpoint offering and pricing from other providers).
-
-**Scope**: This pricing structure applies to Claude Sonnet 4.5, Haiku 4.5, and all future models. Earlier models (Claude Sonnet 4, Opus 4, and prior releases) retain their existing pricing.
-
-For implementation details and code examples:
-- [AWS Bedrock global vs regional endpoints](/docs/en/build-with-claude/claude-on-amazon-bedrock#global-vs-regional-endpoints)
-- [Google Vertex AI global vs regional endpoints](/docs/en/build-with-claude/claude-on-vertex-ai#global-vs-regional-endpoints)
-</Note>
+* | Claude Sonnet 4.5 & Haiku 4.5,
+  * endpoint types / AWS Bedrock & Google Vertex AI offer 
+    * **Global endpoints**
+      * dynamic routing ACROSS regions
+        * == maximum availability
+      * Claude API (1P)
+        * by default, it's global
+    * **Regional endpoints**
+      * data routing | specific geographic regions
+      * 's pricing = 110% * global endpoints' pricing
 
 ## Feature-specific pricing
 
@@ -350,20 +343,21 @@ Contact our sales team at [sales@anthropic.com](mailto:sales@anthropic.com) or t
 
 ## Frequently asked questions
 
-**How is token usage calculated?**
+* **How is token usage calculated?**
+  * Tokens are pieces of text that models process
+  * As a rough estimate, 1 token is approximately 4 characters or 0.75 words in English
+  * The exact count varies by language and content type.
 
-Tokens are pieces of text that models process. As a rough estimate, 1 token is approximately 4 characters or 0.75 words in English. The exact count varies by language and content type.
+* **Are there free tiers or trials?**
+  * New users receive a small amount of free credits to test the API
+  * [Contact sales](mailto:sales@anthropic.com) for information about extended trials for enterprise evaluation.
 
-**Are there free tiers or trials?**
+* **How do discounts stack?**
+  * Batch API and prompt caching discounts can be combined
+  * For example, using both features together provides significant cost savings compared to standard API calls.
 
-New users receive a small amount of free credits to test the API. [Contact sales](mailto:sales@anthropic.com) for information about extended trials for enterprise evaluation.
+* **What payment methods are accepted?**
+  * We accept major credit cards for standard accounts
+  * Enterprise customers can arrange invoicing and other payment methods.
 
-**How do discounts stack?**
-
-Batch API and prompt caching discounts can be combined. For example, using both features together provides significant cost savings compared to standard API calls.
-
-**What payment methods are accepted?**
-
-We accept major credit cards for standard accounts. Enterprise customers can arrange invoicing and other payment methods.
-
-For additional questions about pricing, contact [support@anthropic.com](mailto:support@anthropic.com).
+* ADDITIONAL questions -> mail to [support@anthropic.com](mailto:support@anthropic.com)
