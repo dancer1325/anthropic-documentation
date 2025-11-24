@@ -6,20 +6,38 @@ https://docs.claude.com/en/docs/build-with-claude/context-windows.md
 
 ## Understanding the context window
 
-The "context window" refers to the entirety of the amount of text a language model can look back on and reference when generating new text plus the new text it generates. This is different from the large corpus of data the language model was trained on, and instead represents a "working memory" for the model. A larger context window allows the model to understand and respond to more complex and lengthy prompts, while a smaller context window may limit the model's ability to handle longer prompts or maintain coherence over extended conversations.
+* "context window"
+  * == 👀ALL text / language model can look back on + ALL new text / it generates👀
+  * ⚠️!= data / language model was trained on⚠️
+  * == model's "working memory" 
+  * if it's
+    * large -> model can understand and respond -- to -- more complex and lengthy prompts 
+    * small -> model does NOT 
+      * handle longer prompts
+      * maintain coherence | extended conversations
+  * _Examples:_
+    * _Example1:_ standard context window behavior -- for -- API requests
 
-The diagram below illustrates the standard context window behavior for API requests<sup>1</sup>:
+      ![Context window diagram](static/context-window.png)
+      
+    * _Example2:_ standard context window behavior -- for -- chat interfaces (as [claude.ai](https://claude.ai/))
+      * "first in, first out" system
 
-![Context window diagram](/docs/images/context-window.svg)
-
-_<sup>1</sup>For chat interfaces, such as for [claude.ai](https://claude.ai/), context windows can also be set up on a rolling "first in, first out" system._
-
-* **Progressive token accumulation:** As the conversation advances through turns, each user message and assistant response accumulates within the context window. Previous turns are preserved completely.
-* **Linear growth pattern:** The context usage grows linearly with each turn, with previous turns preserved completely.
-* **200K token capacity:** The total available context window (200,000 tokens) represents the maximum capacity for storing conversation history and generating new output from Claude.
-* **Input-output flow:** Each turn consists of:
-  - **Input phase:** Contains all previous conversation history plus the current user message
-  - **Output phase:** Generates a text response that becomes part of a future input
+* TODO: ONLY for API requests, not?
+* **Progressive token accumulation:**
+  * each user message and assistant response accumulates within the context window
+  * Previous turns are preserved completely
+* **Linear growth pattern:**
+  * == context usage grows linearly / EACH turn
+    * previous turns preserved completely
+* **200K token capacity:**
+  * The total available context window (200,000 tokens) represents the maximum capacity for storing conversation history and generating new output from Claude.
+* **Input-output flow:**
+  * EACH turn == Input phase + Output phase  
+    - **Input phase:**
+      - Contains all previous conversation history plus the current user message
+    - **Output phase:**
+      - Generates a text response that becomes part of a future input
 
 ## The context window with extended thinking
 

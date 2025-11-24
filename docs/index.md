@@ -18,7 +18,9 @@ check
     * [choosing a model](about-claude._models_choosing-a-model.md)
     * [new | Claude 4.5](about-claude._models_whats-new-claude-4-5.md)
     * TODO:
-  * TODO:
+  * Build with Claude
+    * [Features overview](build-with-claude._overview.md)
+    * TODO:
   * Capabilities
     * [Text generation](docs.build-with-claude.text-generation.md)
     * TODO:
