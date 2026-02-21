@@ -24,7 +24,12 @@ check
   * Capabilities
     * [Text generation](docs.build-with-claude.text-generation.md)
     * TODO:
+    * [Structured outputs](build-with-claude._structured-outputs.md)
+    * TODO:
     * Vision
+    * TODO:
+  * Tools
+    * [Overview](agents-and-tools._tool-use_overview.md)
     * TODO:
   * TODO:
   * Agent SDK
