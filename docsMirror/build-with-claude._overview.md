@@ -1,0 +1,48 @@
+https://docs.claude.com/en/docs/build-with-claude/overview.md
+
+# Features overview
+
+* goal
+  * Claude's advanced
+    * features
+    * capabilities
+
+## Core capabilities
+
+* enhance Claude's fundamental abilities, about content ACROSS various formats & use cases, -- for -- 
+  * processing,
+  * analyzing,
+  * generating 
+
+| Feature                                                                                 | Description                                                                                                                                                                                                               | Availability                                                                                               |
+|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| [1M token context window](build-with-claude._context-windows.md)                        | == extended context window / allows you to <br/> &nbsp;&nbsp; process much larger documents <br/> &nbsp;&nbsp; maintain longer conversations <br/> &nbsp;&nbsp; work with more extensive codebases                                      | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta)                        |
+| [Agent Skills](/docs/en/agents-and-tools/agent-skills/overview)                         | Extend Claude's capabilities with Skills. Use pre-built Skills (PowerPoint, Excel, Word, PDF) or create custom Skills with instructions and scripts. Skills use progressive disclosure to efficiently manage context.     | Claude API (Beta) <br/> Azure API (Beta)                                                                   |
+| [Batch processing](/docs/en/build-with-claude/batch-processing)                         | Process large volumes of requests asynchronously for cost savings. Send batches with a large number of queries per batch. Batch API calls costs 50% less than standard API calls.                                         | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) />                     |
+| [Citations](/docs/en/build-with-claude/citations)                                       | Ground Claude's responses in source documents. With Citations, Claude can provide detailed references to the exact sentences and passages it uses to generate responses, leading to more verifiable, trustworthy outputs. | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) <br/> Azure API (Beta) |
+| [Context editing](/docs/en/build-with-claude/context-editing)                           | Automatically manage conversation context with configurable strategies. Supports clearing tool results when approaching token limits and managing thinking blocks in extended thinking conversations.                     | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) <br/> Azure API (Beta) |
+| [Extended thinking](/docs/en/build-with-claude/extended-thinking)                       | Enhanced reasoning capabilities for complex tasks, providing transparency into Claude's step-by-step thought process before delivering its final answer.                                                                  | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta)       |
+| [Files API](/docs/en/build-with-claude/files)                                           | Upload and manage files to use with Claude without re-uploading content with each request. Supports PDFs, images, and text files.                                                                                         | Claude API (Beta) <br/> Azure API (Beta)                                                                   |
+| [PDF support](/docs/en/build-with-claude/pdf-support)                                   | Process and analyze text and visual content from PDF documents.                                                                                                                                                           | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta)       |
+| [Prompt caching (5m)](/docs/en/build-with-claude/prompt-caching)                        | Provide Claude with more background knowledge and example outputs to reduce costs and latency.                                                                                                                            | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta)       |
+| [Prompt caching (1hr)](/docs/en/build-with-claude/prompt-caching#1-hour-cache-duration) | Extended 1-hour cache duration for less frequently accessed but important context, complementing the standard 5-minute cache.                                                                                             | Claude API (Beta) <br/> Azure API (Beta)                                                                   |
+| [Search results](/docs/en/build-with-claude/search-results)                             | Enable natural citations for RAG applications by providing search results with proper source attribution. Achieve web search-quality citations for custom knowledge bases and tools.                                      | Claude API (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta)                                   |
+| [Structured outputs](/docs/en/build-with-claude/structured-outputs)                     | Guarantee schema conformance with two approaches: JSON outputs for structured data responses, and strict tool use for validated tool inputs. Available on Sonnet 4.5 and Opus 4.1.                                        | Claude API (Beta) <br/> Azure API (Beta)Beta                                                               |
+| [Token counting](/docs/en/api/messages-count-tokens)                                    | Token counting enables you to determine the number of tokens in a message before sending it to Claude, helping you make informed decisions about your prompts and usage.                                                  | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta)    |
+| [Tool use](/docs/en/agents-and-tools/tool-use/overview)                                 | Enable Claude to interact with external tools and APIs to perform a wider variety of tasks. For a list of supported tools, see [the Tools table](#tools).                                                                 | Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta)    |
+
+## Tools
+
+These features enable Claude to interact with external systems, execute code, and perform automated tasks through various tool interfaces.
+
+| Feature | Description | Availability |
+|---------|-------------|--------------|
+| [Bash](/docs/en/agents-and-tools/tool-use/bash-tool) | Execute bash commands and scripts to interact with the system shell and perform command-line operations. |  Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta) /> |
+| [Code execution](/docs/en/agents-and-tools/tool-use/code-execution-tool) | Run Python code in a sandboxed environment for advanced data analysis. |  Claude API (Beta) <br/>Beta Azure API (Beta)Beta /> |
+| [Computer use](/docs/en/agents-and-tools/tool-use/computer-use-tool) | Control computer interfaces by taking screenshots and issuing mouse and keyboard commands. |  Claude API (Beta) <br/>Beta Amazon Bedrock (Beta) <br/>Beta Google Cloud's Vertex AI (Beta)Beta Azure API (Beta)Beta /> |
+| [Fine-grained tool streaming](/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming) | Stream tool use parameters without buffering/JSON validation, reducing latency for receiving large parameters. |  Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta) /> |
+| [MCP connector](/docs/en/agents-and-tools/mcp-connector) | Connect to remote [MCP](/docs/en/mcp) servers directly from the Messages API without a separate MCP client. |  Claude API (Beta) <br/>Beta Azure API (Beta)Beta /> |
+| [Memory](/docs/en/agents-and-tools/tool-use/memory-tool) | Enable Claude to store and retrieve information across conversations. Build knowledge bases over time, maintain project context, and learn from past interactions. |  Claude API (Beta) <br/>Beta Amazon Bedrock (Beta) <br/>Beta Google Cloud's Vertex AI (Beta)Beta Azure API (Beta)Beta /> |
+| [Text editor](/docs/en/agents-and-tools/tool-use/text-editor-tool) | Create and edit text files with a built-in text editor interface for file manipulation tasks. |  Claude API (Beta) <br/> Amazon Bedrock (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta) /> |
+| [Web fetch](/docs/en/agents-and-tools/tool-use/web-fetch-tool) | Retrieve full content from specified web pages and PDF documents for in-depth analysis. |  Claude API (Beta) <br/>Beta Azure API (Beta)Beta /> |
+| [Web search](/docs/en/agents-and-tools/tool-use/web-search-tool) | Augment Claude's comprehensive knowledge with current, real-world data from across the web. |  Claude API (Beta) <br/> Google Cloud's Vertex AI (Beta) Azure API (Beta) /> |

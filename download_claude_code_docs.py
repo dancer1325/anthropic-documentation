@@ -45,7 +45,7 @@ def main():
     
     print(f"Found {len(urls)} Claude Code docs URLs")
     
-    docs_dir = Path('docs')
+    docs_dir = Path('docsMirror')
     docs_dir.mkdir(exist_ok=True)
     
     for url in urls:
