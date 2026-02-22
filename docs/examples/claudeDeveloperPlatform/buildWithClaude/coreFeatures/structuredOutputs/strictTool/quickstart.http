@@ -1,0 +1,47 @@
+###
+
+POST https://api.anthropic.com/v1/messages
+x-api-key: $ANTHROPIC_API_KEY
+anthropic-version: 2023-06-01
+anthropic-beta: structured-outputs-2025-11-13
+Content-Type: application/json
+
+{
+  "model": "claude-sonnet-4-5",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is the weather in San Francisco?"
+    }
+  ],
+  "tools": [
+    {
+      "name": "get_weather",
+      "description": "Get the current weather in a given location",
+      "strict": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "The city and state, e.g. San Francisco, CA"
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "celsius",
+              "fahrenheit"
+            ]
+          }
+        },
+        "required": [
+          "location"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}
+
+###

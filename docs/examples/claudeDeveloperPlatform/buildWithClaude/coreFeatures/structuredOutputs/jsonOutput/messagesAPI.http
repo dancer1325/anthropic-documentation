@@ -1,0 +1,46 @@
+###
+POST https://api.anthropic.com/v1/messages
+x-api-key: $ANTHROPIC_API_KEY
+anthropic-version: 2023-06-01
+anthropic-beta: structured-outputs-2025-11-13
+Content-Type: application/json
+
+{
+  "model": "claude-sonnet-4-5",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
+    }
+  ],
+  "output_format": {
+    "type": "json_schema",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "plan_interest": {
+          "type": "string"
+        },
+        "demo_requested": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "plan_interest",
+        "demo_requested"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
+
+###

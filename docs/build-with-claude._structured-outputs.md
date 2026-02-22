@@ -2,307 +2,54 @@ https://docs.claude.com/en/docs/build-with-claude/structured-outputs.md
 
 # Structured outputs
 
-Get validated JSON results from agent workflows
+* allows
+  * | agent workflows,
+    * validate JSON results 
 
----
+* Structured outputs
+  * constrain Claude's responses / follow a specific schema /
+    * downstream processing's output
+      * valid
+      * parseable
+  * ways
+    * **JSON outputs** (`output_format`)
+    * **strict tool use** (`strict: true`)
 
-Structured outputs constrain Claude's responses to follow a specific schema, ensuring valid, parseable output for downstream processing. Use **JSON outputs** (`output_format`) for structured data responses, or **strict tool use** (`strict: true`) for guaranteed schema validation on tool names and inputs.
+* ALLOWED |
+  * Claude API + LLM: Claude Sonnet 4.5 & Claude Opus 4.1
+    * -- as -- public beta feature 
 
-<Note>
-Structured outputs are currently available as a public beta feature in the Claude API for Claude Sonnet 4.5 and Claude Opus 4.1.
-
-To use the feature, set the [beta header](/docs/en/api/beta-headers) `structured-outputs-2025-11-13`.
-</Note>
-
-<Tip>
-Share feedback using this [form](https://forms.gle/BFnYc6iCkWoRzFgk7).
-</Tip>
+* requirements
+  * [beta header](api.beta-headers.md) = `structured-outputs-2025-11-13`
 
 ## Why use structured outputs
 
-Without structured outputs, Claude can generate malformed JSON responses or invalid tool inputs that break your applications. Even with careful prompting, you may encounter:
-- Parsing errors from invalid JSON syntax
-- Missing required fields
-- Inconsistent data types
-- Schema violations requiring error handling and retries
+* otherwise,
+  * Claude can generate
+    * malformed JSON responses OR
+    * invalid tool inputs / break your applications
 
-Structured outputs guarantee schema-compliant responses through constrained decoding:
+* if you are NOT careful prompting -> you may encounter
+  - Parsing errors | invalid JSON syntax
+  - Missing required fields
+  - Inconsistent data types
+  - Schema violations / require you error handling & retries
+
+* TODO: Structured outputs guarantee schema-compliant responses through constrained decoding:
 - **Always valid**: No more `JSON.parse()` errors
 - **Type safe**: Guaranteed field types and required fields
 - **Reliable**: No retries needed for schema violations
 - **Two modes**: JSON for tasks like data extraction, and strict tools for situations like complex tools and agentic workflows
 
-## Quick start
+## JSON outputs use cases vs strict tool use cases
 
-<Tabs>
-<Tab title="JSON outputs">
-
-<CodeGroup>
-
-```bash Shell
-curl https://api.anthropic.com/v1/messages \
-  -H "content-type: application/json" \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: structured-outputs-2025-11-13" \
-  -d '{
-    "model": "claude-sonnet-4-5",
-    "max_tokens": 1024,
-    "messages": [
-      {
-        "role": "user",
-        "content": "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
-      }
-    ],
-    "output_format": {
-      "type": "json_schema",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "name": {"type": "string"},
-          "email": {"type": "string"},
-          "plan_interest": {"type": "string"},
-          "demo_requested": {"type": "boolean"}
-        },
-        "required": ["name", "email", "plan_interest", "demo_requested"],
-        "additionalProperties": false
-      }
-    }
-  }'
-```
-
-```python Python
-import anthropic
-
-client = anthropic.Anthropic()
-
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
-    max_tokens=1024,
-    betas=["structured-outputs-2025-11-13"],
-    messages=[
-        {
-            "role": "user",
-            "content": "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
-        }
-    ],
-    output_format={
-        "type": "json_schema",
-        "schema": {
-            "type": "object",
-            "properties": {
-                "name": {"type": "string"},
-                "email": {"type": "string"},
-                "plan_interest": {"type": "string"},
-                "demo_requested": {"type": "boolean"}
-            },
-            "required": ["name", "email", "plan_interest", "demo_requested"],
-            "additionalProperties": False
-        }
-    }
-)
-print(response.content[0].text)
-```
-
-```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
-});
-
-const response = await client.beta.messages.create({
-  model: "claude-sonnet-4-5",
-  max_tokens: 1024,
-  betas: ["structured-outputs-2025-11-13"],
-  messages: [
-    {
-      role: "user",
-      content: "Extract the key information from this email: John Smith (john@example.com) is interested in our Enterprise plan and wants to schedule a demo for next Tuesday at 2pm."
-    }
-  ],
-  output_format: {
-    type: "json_schema",
-    schema: {
-      type: "object",
-      properties: {
-        name: { type: "string" },
-        email: { type: "string" },
-        plan_interest: { type: "string" },
-        demo_requested: { type: "boolean" }
-      },
-      required: ["name", "email", "plan_interest", "demo_requested"],
-      additionalProperties: false
-    }
-  }
-});
-console.log(response.content[0].text);
-```
-
-</CodeGroup>
-
-**Response format:** Valid JSON matching your schema in `response.content[0].text`
-
-```json
-{
-  "name": "John Smith",
-  "email": "john@example.com",
-  "plan_interest": "Enterprise",
-  "demo_requested": true
-}
-```
-
-</Tab>
-<Tab title="Strict tool use">
-
-<CodeGroup>
-
-```bash Shell
-curl https://api.anthropic.com/v1/messages \
-  -H "content-type: application/json" \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: structured-outputs-2025-11-13" \
-  -d '{
-    "model": "claude-sonnet-4-5",
-    "max_tokens": 1024,
-    "messages": [
-      {"role": "user", "content": "What is the weather in San Francisco?"}
-    ],
-    "tools": [{
-      "name": "get_weather",
-      "description": "Get the current weather in a given location",
-      "strict": true,
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "location": {
-            "type": "string",
-            "description": "The city and state, e.g. San Francisco, CA"
-          },
-          "unit": {
-            "type": "string",
-            "enum": ["celsius", "fahrenheit"]
-          }
-        },
-        "required": ["location"],
-        "additionalProperties": false
-      }
-    }]
-  }'
-```
-
-```python Python
-import anthropic
-
-client = anthropic.Anthropic()
-
-response = client.beta.messages.create(
-    model="claude-sonnet-4-5",
-    max_tokens=1024,
-    betas=["structured-outputs-2025-11-13"],
-    messages=[
-        {"role": "user", "content": "What's the weather like in San Francisco?"}
-    ],
-    tools=[
-        {
-            "name": "get_weather",
-            "description": "Get the current weather in a given location",
-            "strict": True,  # Enable strict mode
-            "input_schema": {
-                "type": "object",
-                "properties": {
-                    "location": {
-                        "type": "string",
-                        "description": "The city and state, e.g. San Francisco, CA"
-                    },
-                    "unit": {
-                        "type": "string",
-                        "enum": ["celsius", "fahrenheit"],
-                        "description": "The unit of temperature, either 'celsius' or 'fahrenheit'"
-                    }
-                },
-                "required": ["location"],
-                "additionalProperties": False
-            }
-        }
-    ]
-)
-print(response.content)
-```
-
-```typescript TypeScript
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
-});
-
-const response = await client.beta.messages.create({
-  model: "claude-sonnet-4-5",
-  max_tokens: 1024,
-  betas: ["structured-outputs-2025-11-13"],
-  messages: [
-    {
-      role: "user",
-      content: "What's the weather like in San Francisco?"
-    }
-  ],
-  tools: [{
-    name: "get_weather",
-    description: "Get the current weather in a given location",
-    strict: true,  // Enable strict mode
-    input_schema: {
-      type: "object",
-      properties: {
-        location: {
-          type: "string",
-          description: "The city and state, e.g. San Francisco, CA"
-        },
-        unit: {
-          type: "string",
-          enum: ["celsius", "fahrenheit"]
-        }
-      },
-      required: ["location"],
-      additionalProperties: false
-    }
-  }]
-});
-console.log(response.content);
-```
-
-</CodeGroup>
-
-**Response format:** Tool use blocks with validated inputs in `response.content[x].input`
-
-```json
-{
-  "type": "tool_use",
-  "name": "get_weather",
-  "input": {
-    "location": "San Francisco, CA"
-  }
-}
-```
-
-**Guarantees:**
-- Tool `input` strictly follows the `input_schema`
-- Tool `name` is always valid (from provided tools or server tools)
-
-</Tab>
-</Tabs>
-
-## When to use JSON outputs vs strict tool use
-
-Choose the right mode for your use case:
-
-| Use JSON outputs when | Use strict tool use when |
-|-----------------------|-------------------------|
+| JSON outputs use cases | strict tool use cases |
+|------------------------|-------------------------|
 | You need Claude's response in a specific format | You need validated parameters and tool names for tool calls |
 | Extracting data from images or text | Building agentic workflows |
 | Generating structured reports | Ensuring type-safe function calls |
 | Formatting API responses | Complex tools with many and/or nested properties |
+  | structured data responses | guarantee schema validation \| tool names & inputs |
 
 ### Why strict tool use matters for agents
 
@@ -946,6 +693,5 @@ For persistent issues with valid schemas, [contact support](https://support.clau
 - **[Citations](/docs/en/build-with-claude/citations)**: Citations require interleaving citation blocks with text, which conflicts with strict JSON schema constraints. Returns 400 error if citations enabled with `output_format`.
 - **[Message Prefilling](/docs/en/build-with-claude/prompt-engineering/prefill-claudes-response)**: Incompatible with JSON outputs
 
-<Tip>
-**Grammar scope**: Grammars apply only to Claude's direct output, not to tool use calls, tool results, or thinking tags (when using [Extended Thinking](/docs/en/build-with-claude/extended-thinking)). Grammar state resets between sections, allowing Claude to think freely while still producing structured output in the final response.
-</Tip>
+**Grammar scope**: Grammars apply only to Claude's direct output, not to tool use calls, tool results, or thinking tags (when using [Extended Thinking](/docs/en/build-with-claude/extended-thinking))
+Grammar state resets between sections, allowing Claude to think freely while still producing structured output in the final response.
